@@ -16,19 +16,35 @@ public class ProductDAO {
 	 */
 
 	// 제품선택(페이지)
-	private static final String SELECTALL_PAGE = "SELECT P_ID, P_NAME, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGEPATH "
+	private static final String SELECTALL_PAGE = "SELECT P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGEPATH "
 			+ "FROM ("
-			+ "    SELECT P_ID, P_NAME, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGEPATH, ROWNUM AS RN "
+			+ "    SELECT P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGEPATH, ROWNUM AS RN "
 			+ "    FROM PRODUCT " + "WHERE SELLING_STATE = '판매중'" + ") " + "WHERE RN BETWEEN ? AND ?";
 
 	// 제품전체
-	private static final String SELECTALL_ALL = "SELECT P_ID, P_NAME, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGEPATH "
+	private static final String SELECTALL_ALL = "SELECT P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGEPATH "
 			+ "FROM PRODUCT";
 
 	private static final String SELECTONE = "";
 
-	private static final String INSERT = "INSERT INTO PRODUCT (P_ID, P_NAME, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGEPATH) VALUES (NVL((SELECT MAX(P_ID) FROM PRODUCT), 0) + 1, ?, ?, ?, ?, ?, ?, ?, SYSTIMESTAMP, ?, ?)";
-
+	//성공한 Insert
+	private static final String INSERT = "INSERT INTO PRODUCT "
+			+ "(P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGEPATH) "
+			+ "	VALUES ( "
+			+ "	  NVL((SELECT MAX(P_ID) FROM PRODUCT), 0) + 1, "
+			+ "	  ?, "
+			+ "	  ?, "
+			+ "	  ?, "
+			+ "	  ?, "
+			+ "	  ?, "
+			+ "	  ?, "
+			+ "	  ?, "
+			+ "	  ?, "
+			+ "	  SYSTIMESTAMP, "
+			+ "	  ?, "
+			+ "	  ? "
+			+ "	)";		
+	
 	private static final String UPDATE = "";
 
 	private static final String DELETE = "";
@@ -64,6 +80,7 @@ public class ProductDAO {
 					productTempDTO.setRegTime(rs.getTimestamp("REG_TIME"));
 					productTempDTO.setSellingState(rs.getString("SELLING_STATE"));
 					productTempDTO.setImagePath(rs.getString("IMAGEPATH"));
+					productTempDTO.setpDetail(rs.getString("P_DETAIL"));
 					productList.add(productTempDTO);
 				}
 
@@ -105,6 +122,7 @@ public class ProductDAO {
 					productTempDTO.setRegTime(rs.getTimestamp("REG_TIME"));
 					productTempDTO.setSellingState(rs.getString("SELLING_STATE"));
 					productTempDTO.setImagePath(rs.getString("IMAGEPATH"));
+					productTempDTO.setpDetail(rs.getString("P_DETAIL"));
 					productList.add(productTempDTO);
 				}
 
@@ -131,36 +149,46 @@ public class ProductDAO {
 	}
 
 	public boolean insert(ProductDTO pDTO) {
+		System.out.println("[로그] 추가 로직");
 
 		conn = JDBCUtil.connect();
-		if (pDTO.getSearchCondition().equals("제품추가")) {
+		
+		if (pDTO.getSearchCondition().equals("상품추가")) {
+			
+			System.out.println("[로그] 제품추가 로직");
+			
 			try {
-
+				System.out.println("[로그] 트라이 로직");
 				pstmt = conn.prepareStatement(INSERT);
-
 				pstmt.setString(1, pDTO.getpName());
-				pstmt.setInt(2, pDTO.getCostPrice());
-				pstmt.setInt(3, pDTO.getRegularPrice());
-				pstmt.setInt(4, pDTO.getSellingPrice());
-				pstmt.setInt(5, pDTO.getpQty());
-				pstmt.setString(6, pDTO.getIngredient());
-				pstmt.setString(7, pDTO.getCategory());
-				pstmt.setString(8, pDTO.getSellingState());
-				pstmt.setString(9, pDTO.getImagePath());
+				pstmt.setString(2, pDTO.getpDetail());
+				pstmt.setInt(3, pDTO.getCostPrice());
+				pstmt.setInt(4, pDTO.getRegularPrice());
+				pstmt.setInt(5, pDTO.getSellingPrice());
+				pstmt.setInt(6, pDTO.getpQty());
+				pstmt.setString(7, pDTO.getIngredient());
+				pstmt.setString(8, pDTO.getCategory());
+				pstmt.setString(9, pDTO.getSellingState());
+				pstmt.setString(10, pDTO.getImagePath());
 
 				int result = pstmt.executeUpdate();
+				
+				System.out.println("[로그] 제품추가"+result);
 
 				if (result <= 0) {
 					return false;
 				}
 
 			} catch (SQLException e) {
+				System.out.println("[로그] 예외처리");
 				e.printStackTrace();
 				return false;
 			} finally {
+				System.out.println("[로그] 연결종료");
 				JDBCUtil.disconnect(pstmt, conn);
 			}
 		}
+		System.out.println("[로그] 트루 반환");
 		return true;
 	}
 
