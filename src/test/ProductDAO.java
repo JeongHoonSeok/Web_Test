@@ -25,7 +25,7 @@ public class ProductDAO {
 	private static final String SELECTALL_ALL = "SELECT P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGEPATH "
 			+ "FROM PRODUCT";
 
-	private static final String SELECTONE = "";
+	private static final String SELECTONE_DETAIL = "";
 
 	//성공한 Insert
 	private static final String INSERT = "INSERT INTO PRODUCT "
