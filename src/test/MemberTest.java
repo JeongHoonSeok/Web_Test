@@ -14,8 +14,14 @@ public class MemberTest {
 
 		// 아이디 중복검사
 		memberDTO.setMid("teemo");
-		memberDTO.setSearchCondition("아이디중복검사");
-		System.out.println(memberDAO.selectOne(memberDTO).toString());
+		memberDTO.setSearchCondition("건강상태");
+		String health = memberDAO.selectOne(memberDTO).getHealth();
+		System.out.println("건강상태 : "+health);
+		
+		// 아이디 중복검사
+//		memberDTO.setMid("teemo");
+//		memberDTO.setSearchCondition("아이디중복검사");
+//		System.out.println(memberDAO.selectOne(memberDTO).toString());
 		
         // 회원가입
 //		Date dob = null;
