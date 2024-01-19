@@ -105,50 +105,50 @@ public class ProductDAO {
 			}
 
 		}
-//		else if (pDTO.getSearchCondition().equals("상품출력전체")) {
-//
-//			conn = JDBCUtil.connect();
-//
-//			try {
-//				pstmt = conn.prepareStatement(SELECTALL_ALL);
-//
-//				ResultSet rs = pstmt.executeQuery();
-//
-//				while (rs.next()) {
-//					if (productList == null) {
-//						productList = new ArrayList<ProductDTO>(); // productList가 null인 경우에만 객체 생성
-//					}
-//					ProductDTO productTempDTO = new ProductDTO();
-//					productTempDTO.setPID(rs.getInt("P_ID"));
-//					productTempDTO.setpName(rs.getString("P_NAME"));
-//					productTempDTO.setCostPrice(rs.getInt("COST_PRICE"));
-//					productTempDTO.setRegularPrice(rs.getInt("REGULAR_PRICE"));
-//					productTempDTO.setSellingPrice(rs.getInt("SELLING_PRICE"));
-//					productTempDTO.setpQty(rs.getInt("P_QTY"));
-//					productTempDTO.setIngredient(rs.getString("INGREDIENT"));
-//					productTempDTO.setCategory(rs.getString("CATEGORY"));
-//					productTempDTO.setRegTime(rs.getTimestamp("REG_TIME"));
-//					productTempDTO.setSellingState(rs.getString("SELLING_STATE"));
-//					productTempDTO.setImagePath(rs.getString("IMAGEPATH"));
-//					productTempDTO.setpDetail(rs.getString("P_DETAIL"));
-//					productList.add(productTempDTO);
-//				}
-//
-//				rs.close();
-//
-//			} catch (SQLException e) {
-//				System.out.println("[로그_제품출력페이지] 오류발생");
-//				e.printStackTrace();
-//			} finally {
-//				JDBCUtil.disconnect(pstmt, conn);
-//			}
-//			if (productList != null) {
-//				System.out.println("[로그_제품출력페이지] 성공");
-//				return productList;
-//			}
-//
-//		} 
 		else if (pDTO.getSearchCondition().equals("상품출력전체")) {
+
+			conn = JDBCUtil.connect();
+
+			try {
+				pstmt = conn.prepareStatement(SELECTALL_ALL);
+
+				ResultSet rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					if (productList == null) {
+						productList = new ArrayList<ProductDTO>(); // productList가 null인 경우에만 객체 생성
+					}
+					ProductDTO productTempDTO = new ProductDTO();
+					productTempDTO.setPID(rs.getInt("P_ID"));
+					productTempDTO.setpName(rs.getString("P_NAME"));
+					productTempDTO.setCostPrice(rs.getInt("COST_PRICE"));
+					productTempDTO.setRegularPrice(rs.getInt("REGULAR_PRICE"));
+					productTempDTO.setSellingPrice(rs.getInt("SELLING_PRICE"));
+					productTempDTO.setpQty(rs.getInt("P_QTY"));
+					productTempDTO.setIngredient(rs.getString("INGREDIENT"));
+					productTempDTO.setCategory(rs.getString("CATEGORY"));
+					productTempDTO.setRegTime(rs.getTimestamp("REG_TIME"));
+					productTempDTO.setSellingState(rs.getString("SELLING_STATE"));
+					productTempDTO.setImagePath(rs.getString("IMAGEPATH"));
+					productTempDTO.setpDetail(rs.getString("P_DETAIL"));
+					productList.add(productTempDTO);
+				}
+
+				rs.close();
+
+			} catch (SQLException e) {
+				System.out.println("[로그_제품출력페이지] 오류발생");
+				e.printStackTrace();
+			} finally {
+				JDBCUtil.disconnect(pstmt, conn);
+			}
+			if (productList != null) {
+				System.out.println("[로그_제품출력페이지] 성공");
+				return productList;
+			}
+
+		} 
+		else if (pDTO.getSearchCondition().equals("상품출력필터")) {
 			
 			conn = JDBCUtil.connect();
 			

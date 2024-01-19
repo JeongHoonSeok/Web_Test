@@ -34,7 +34,7 @@ public class ProductTest {
 //		}
 		
 		//필터검색
-        productDTO.setSearchCondition("상품출력전체");      
+        productDTO.setSearchCondition("상품출력필터");      
         productDTO.setSellingState("판매중");
         productDTO.setpName("라면");
         System.out.println(productDTO.getpName());
