@@ -6,7 +6,7 @@ public class ProductDTO {
 	
     private int PID;
     private String pName;
-    private String pDetail; //(제품설명)
+    private String pDetail;
     private int costPrice;
     private int regularPrice;
     private int sellingPrice;

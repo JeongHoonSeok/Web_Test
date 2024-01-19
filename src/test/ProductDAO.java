@@ -22,11 +22,11 @@ public class ProductDAO {
 			+ "    FROM PRODUCT " + "WHERE SELLING_STATE = '판매중'" + ") " + "WHERE RN BETWEEN ? AND ?";
 
 	// 상품전체
-//	private static final String SELECTALL_ALL = "SELECT P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGEPATH "
-//			+ "FROM PRODUCT";
+	private static final String SELECTALL_ALL = "SELECT P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGEPATH "
+			+ "FROM PRODUCT";
 	
 	// 상품전체
-	private static final String SELECTALL_ALL = "SELECT P.P_ID, P.P_NAME, P.P_DETAIL, P.COST_PRICE, P.REGULAR_PRICE, "
+	private static final String SELECTALL_FILTER = "SELECT P.P_ID, P.P_NAME, P.P_DETAIL, P.COST_PRICE, P.REGULAR_PRICE, "
 			+ " P.SELLING_PRICE, P.P_QTY, P.INGREDIENT, P.CATEGORY, P.REG_TIME, "
 			+ " P.SELLING_STATE, P.IMAGEPATH, NVL(SUM(B.B_QTY), 0) AS TOTAL_B_QTY " + " FROM PRODUCT P "
 			+ " LEFT JOIN BUYINFO B ON P.P_ID = B.P_ID " + " WHERE P.SELLING_STATE = ? "
@@ -176,7 +176,7 @@ public class ProductDAO {
 
 			try {
 				System.out.println("[로그_제품출력페이지_필터] try진입");
-				pstmt = conn.prepareStatement(SELECTALL_ALL);
+				pstmt = conn.prepareStatement(SELECTALL_FILTER);
 				pstmt.setString(1, pDTO.getSellingState());
 				pstmt.setString(2, "%" + pDTO.getpName() + "%");
 				pstmt.setString(3, "%" + pDTO.getCategory() + "%");
@@ -209,31 +209,6 @@ public class ProductDAO {
 					productTempDTO.setAncTotalQty(rs.getInt("TOTAL_B_QTY"));
 					productList.add(productTempDTO);
 				}
-
-//				while (rs.next()) {
-//					System.out.println("[로그_제품출력페이지_필터] rs.next" + rs.getInt("P_ID"));
-//					if (productList == null) {
-//						System.out.println("[로그_제품출력페이지_필터] productList==null");
-//						productList = new ArrayList<ProductDTO>(); // productList가 null인 경우에만 객체 생성
-//						System.out.println("[로그_제품출력페이지_필터] productList생성");
-//					}
-//					ProductDTO productTempDTO = new ProductDTO();
-//					productTempDTO.setPID(rs.getInt("P_ID"));
-//					productTempDTO.setpName(rs.getString("P_NAME"));
-//					productTempDTO.setCostPrice(rs.getInt("COST_PRICE"));
-//					productTempDTO.setRegularPrice(rs.getInt("REGULAR_PRICE"));
-//					productTempDTO.setSellingPrice(rs.getInt("SELLING_PRICE"));
-//					productTempDTO.setpQty(rs.getInt("P_QTY"));
-//					productTempDTO.setIngredient(rs.getString("INGREDIENT"));
-//					productTempDTO.setCategory(rs.getString("CATEGORY"));
-//					productTempDTO.setRegTime(rs.getTimestamp("REG_TIME"));
-//					productTempDTO.setSellingState(rs.getString("SELLING_STATE"));
-//					productTempDTO.setImagePath(rs.getString("IMAGEPATH"));
-//					productTempDTO.setpDetail(rs.getString("P_DETAIL"));
-//					productTempDTO.setAncTotalQty(rs.getInt("TOTAL_B_QTY"));
-//					productList.add(productTempDTO);
-//				}
-
 				rs.close();
 
 			} catch (SQLException e) {
