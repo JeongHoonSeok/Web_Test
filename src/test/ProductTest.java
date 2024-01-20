@@ -36,11 +36,11 @@ public class ProductTest {
 		//필터검색
         productDTO.setSearchCondition("상품출력필터");      
         productDTO.setSellingState("판매중");
-        productDTO.setpName("라면");
+        productDTO.setpName("라면");	//1
         System.out.println(productDTO.getpName());
-        productDTO.setCategory("");
+        productDTO.setCategory("");	//2
         System.out.println(productDTO.getCategory());
-        productDTO.setSellingPrice(750);
+        productDTO.setSellingPrice(750);//3
         ArrayList<ProductDTO> productList = productDAO.selectAll(productDTO);
         System.out.println("[로그_테스트] selectAll 성공");
         
