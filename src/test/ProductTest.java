@@ -7,12 +7,12 @@ import java.util.Scanner;
 
 public class ProductTest {
 
-	public static void main(String[] args) {		
+	public static void main(String[] args) {
 
 		ProductDAO productDAO = new ProductDAO();
 		ProductDTO productDTO = new ProductDTO();
-		
-		//상품추가
+
+		// 상품추가
 //		productDTO.setSearchCondition("상품추가");
 //		productDTO.setpName("테스트 페이지 새로운 제품");	//1
 //		productDTO.setCostPrice(10000);				//2
@@ -32,15 +32,15 @@ public class ProductTest {
 //		} else {
 //			System.out.println("제품 추가 실패");
 //		}
-		
-		//필터검색
+
+		// 필터검색
         productDTO.setSearchCondition("상품출력필터");      
         productDTO.setSellingState("판매중");
-        productDTO.setpName("라면");	//1
+        productDTO.setpName("");	//1
         System.out.println(productDTO.getpName());
         productDTO.setCategory("");	//2
         System.out.println(productDTO.getCategory());
-        productDTO.setSellingPrice(750);//3
+        productDTO.setSellingPrice(0);//3
         ArrayList<ProductDTO> productList = productDAO.selectAll(productDTO);
         System.out.println("[로그_테스트] selectAll 성공");
         
@@ -55,15 +55,14 @@ public class ProductTest {
         } else {
             System.out.println("상품 리스트가 없거나 오류가 발생했습니다.");
         }
-        
-		
-		//상품상세
+
+		// 상품상세
 //		productDTO.setSearchCondition("상품상세정보");
 //		productDTO.setPID(1);	//1
 //		productDTO =productDAO.selectOne(productDTO);
 //		System.out.println(productDTO);			
-		
-		//상품출력페이지
+
+		// 상품출력페이지
 //		productDTO.setSearchCondition("상품목록페이지");
 //		productDTO.setAncSelectMin(1);
 //		productDTO.setAncSelectMax(8);
@@ -92,8 +91,8 @@ public class ProductTest {
 //        } else {
 //            System.out.println("상품 목록 조회 실패");
 //        }
-        
-        //상품출력전체
+
+		// 상품출력전체
 //		productDTO.setSearchCondition("상품출력전체");
 //        ArrayList<ProductDTO> productList = productDAO.selectAll(productDTO);
 //        
@@ -120,6 +119,17 @@ public class ProductTest {
 //        } else {
 //            System.out.println("상품 목록 조회 실패");
 //        }
+
+		// 상품판매상태 변경
+//		productDTO.setSearchCondition("판매중지");
+//		productDTO.setPID(1);
+//		boolean flag = productDAO.update(productDTO);
+//		if (flag == true) {
+//			System.out.println("판매상태 변경완료");
+//		} else {
+//			System.out.println("판매상태 변경 실패");
+//		}
+
 	}
 
 }
