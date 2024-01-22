@@ -35,7 +35,6 @@ public class ProductTest {
 
 		// 필터검색
         productDTO.setSearchCondition("상품출력필터");      
-        productDTO.setSellingState("판매중");
         productDTO.setpName("");	//1
         System.out.println(productDTO.getpName());
         productDTO.setCategory("");	//2
@@ -57,10 +56,10 @@ public class ProductTest {
         }
 
 		// 상품상세
-//		productDTO.setSearchCondition("상품상세정보");
-//		productDTO.setPID(1);	//1
-//		productDTO =productDAO.selectOne(productDTO);
-//		System.out.println(productDTO);			
+		productDTO.setSearchCondition("상품상세정보");
+		productDTO.setPID(1);	//1
+		productDTO =productDAO.selectOne(productDTO);
+		System.out.println(productDTO);			
 
 		// 상품출력페이지
 //		productDTO.setSearchCondition("상품목록페이지");

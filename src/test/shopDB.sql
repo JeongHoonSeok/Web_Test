@@ -288,17 +288,18 @@ WHERE P_ID = 1;
 --쿠폰생성(만약 부여를 한다고하면 쿠폰번호는 컨트롤러에서 만들어서 set)--
 INSERT INTO COUPON (CP_ID, M_ID, CP_NAME, PERIOD, DISCOUNT, CATEGORY)
 VALUES (
- '4', 	--쿠폰번호--
+ '3', 	--쿠폰번호--
  'teemo',		--소유자MID--
  '임시쿠폰 1',	--쿠폰이름--
- SYSTIMESTAMP,	--현재시간 +30일--
+ SYSTIMESTAMP,	--현재시간 +30일----SYSTIMESTAMP + INTERVAL '30' DAY--
  30,			-- 할인율
  '눈'
 );
+
 --쿠폰업데이트--
 UPDATE COUPON 
 SET USED = '사용'
-WHERE CP_ID = '5';
+WHERE CP_ID = '1';
 
 --쿠폰목록출력(마이페이지, 사용, 미사용 정렬 후 만료일 순 정렬)--
 -- 내림차순으로 해야 사용이위로 옴
@@ -318,8 +319,8 @@ INSERT INTO BUYINFO
 (B_ID, M_ID, P_ID, CP_ID, ORDER_NUM, DELI_STATE, B_QTY, PAYMENT_PRICE, BUY_TIME, B_POSTCODE, B_ADDRESS, B_DETAILED_ADDRESS)
 VALUES (
     NVL((SELECT MAX(B_ID) FROM BUYINFO), 0) + 1,
-    'teemooo', 
-    1, 
+    'teemo', 
+    5, 
     'CP001', 
     12345, 
     '결재 완료', 
@@ -342,18 +343,25 @@ FROM BUYINFO
 WHERE M_ID = 'teemo';
 
 --------------------------------------------------리뷰 샘플 코드-------------------------------------------------------------------------------------------------------------
+--리뷰 추가
 INSERT INTO REVIEW 
 (R_ID, M_ID, B_ID, SCORE, CONTENTS, CREATE_TIME)
 VALUES (
     NVL((SELECT MAX(R_ID) FROM REVIEW), 0) + 1,
-    'teemo', 
-    1, 
+    'teemoooo', 
+    3, 
     5, 
     '값 싸고 맛있는 영양제3', 
     CURRENT_TIMESTAMP
 );
 
-
+--리뷰 출력
+SELECT R.R_ID, R.M_ID, R.B_ID, R.SCORE, R.CONTENTS, R.CREATE_TIME, B.P_ID, P.P_NAME
+FROM REVIEW R
+JOIN BUYINFO B ON R.B_ID = B.B_ID
+JOIN PRODUCT P ON B.P_ID = P.P_ID
+WHERE R.M_ID = 'teemo'
+ORDER BY R.CREATE_TIME DESC
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- 테이블 전체목록--
 SELECT * FROM MEMBER;
