@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 public class ProductDAO {
 
 	private Connection conn;
@@ -15,15 +16,19 @@ public class ProductDAO {
 	 * 기능 1) 제품목록 보기 2) 제품상세 보기 3) 제품추가 4) 제품 정보 변경 판매중단은 있고 삭제는 없음 5) X 제품 삭제
 	 */
 
+	// 상품선택(페이지)
+	private static final String SELECTALL_PAGE = "SELECT P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGEPATH "
+			+ "FROM ("
+			+ "    SELECT P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGEPATH, ROWNUM AS RN "
+			+ "    FROM PRODUCT " + "WHERE SELLING_STATE = '판매중'" + ") " + "WHERE RN BETWEEN ? AND ?";
+
 	// 상품전체
 	private static final String SELECTALL_FILTER = "SELECT P.P_ID, P.P_NAME, P.P_DETAIL, P.COST_PRICE, P.REGULAR_PRICE, "
 			+ " P.SELLING_PRICE, P.P_QTY, P.INGREDIENT, P.CATEGORY, P.REG_TIME, "
 			+ " P.SELLING_STATE, P.IMAGEPATH, NVL(SUM(B.B_QTY), 0) AS TOTAL_B_QTY "
 			+ " FROM (SELECT P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGEPATH, ROWNUM AS RN FROM PRODUCT WHERE SELLING_STATE = '판매중') P "
-			+ " LEFT JOIN BUYINFO B ON P.P_ID = B.P_ID "
-			+ " WHERE RN BETWEEN ? AND ?"
-			+ " AND (P.P_NAME LIKE ? OR P.P_NAME IS NULL) "
-			+ " AND (P.CATEGORY LIKE ? OR P.CATEGORY IS NULL) "
+			+ " LEFT JOIN BUYINFO B ON P.P_ID = B.P_ID " + " WHERE RN BETWEEN ? AND ?"
+			+ " AND (P.P_NAME LIKE ? OR P.P_NAME IS NULL) " + " AND (P.CATEGORY LIKE ? OR P.CATEGORY IS NULL) "
 			+ " AND (P.SELLING_PRICE <= ? OR P.SELLING_PRICE IS NULL) "
 			+ " GROUP BY P.P_ID, P.P_NAME, P.P_DETAIL, P.COST_PRICE, P.REGULAR_PRICE, "
 			+ " P.SELLING_PRICE, P.P_QTY, P.INGREDIENT, P.CATEGORY, P.REG_TIME, P.SELLING_STATE, P.IMAGEPATH "
@@ -54,8 +59,50 @@ public class ProductDAO {
 		ArrayList<ProductDTO> productList = new ArrayList<ProductDTO>();
 
 		conn = JDBCUtil.connect();
-		
-		if (pDTO.getSearchCondition().equals("상품출력필터")) {
+
+		if (pDTO.getSearchCondition().equals("상품목록페이지")) {
+
+			try {
+				pstmt = conn.prepareStatement(SELECTALL_PAGE);
+				pstmt.setInt(1, pDTO.getAncSelectMin());
+				pstmt.setInt(2, pDTO.getAncSelectMax());
+
+				ResultSet rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					if (productList == null) {
+						productList = new ArrayList<ProductDTO>(); // productList가 null인 경우에만 객체 생성
+					}
+					ProductDTO productTempDTO = new ProductDTO();
+					productTempDTO.setPID(rs.getInt("P_ID"));
+					productTempDTO.setpName(rs.getString("P_NAME"));
+					productTempDTO.setCostPrice(rs.getInt("COST_PRICE"));
+					productTempDTO.setRegularPrice(rs.getInt("REGULAR_PRICE"));
+					productTempDTO.setSellingPrice(rs.getInt("SELLING_PRICE"));
+					productTempDTO.setpQty(rs.getInt("P_QTY"));
+					productTempDTO.setIngredient(rs.getString("INGREDIENT"));
+					productTempDTO.setCategory(rs.getString("CATEGORY"));
+					productTempDTO.setRegTime(rs.getTimestamp("REG_TIME"));
+					productTempDTO.setSellingState(rs.getString("SELLING_STATE"));
+					productTempDTO.setImagePath(rs.getString("IMAGEPATH"));
+					productTempDTO.setpDetail(rs.getString("P_DETAIL"));
+					productList.add(productTempDTO);
+				}
+
+				rs.close();
+
+			} catch (SQLException e) {
+				System.out.println("[로그_제품출력페이지] 오류발생");
+				e.printStackTrace();
+			} finally {
+				JDBCUtil.disconnect(pstmt, conn);
+			}
+			if (productList != null) {
+				System.out.println("[로그_제품출력페이지] 성공");
+				return productList;
+			}
+
+		} else if (pDTO.getSearchCondition().equals("상품출력필터")) {
 
 			System.out.println("[로그_제품출력페이지_필터] 진입");
 
@@ -80,8 +127,8 @@ public class ProductDAO {
 			try {
 				System.out.println("[로그_제품출력페이지_필터] try진입");
 				pstmt = conn.prepareStatement(SELECTALL_FILTER);
-				System.out.println("[로그]_제품출력페이지_필터 최소값"+pDTO.getAncSelectMin());
-				System.out.println("[로그]_제품출력페이지_필터 최대값"+pDTO.getAncSelectMax());
+				System.out.println("[로그]_제품출력페이지_필터 최소값" + pDTO.getAncSelectMin());
+				System.out.println("[로그]_제품출력페이지_필터 최대값" + pDTO.getAncSelectMax());
 				pstmt.setInt(1, pDTO.getAncSelectMin());
 				pstmt.setInt(2, pDTO.getAncSelectMax());
 				pstmt.setString(3, "%" + pDTO.getpName() + "%");
@@ -97,6 +144,7 @@ public class ProductDAO {
 					if (productList == null) {
 						productList = new ArrayList<ProductDTO>();
 					}
+					// System.out.println("[로그] " + rs.getInt("P_ID"));
 					ProductDTO productTempDTO = new ProductDTO();
 					productTempDTO.setPID(rs.getInt("P_ID"));
 					productTempDTO.setpName(rs.getString("P_NAME"));

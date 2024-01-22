@@ -34,33 +34,33 @@ public class ProductTest {
 //		}
 
 		// 필터검색
-        productDTO.setSearchCondition("상품출력필터");    
-		productDTO.setAncSelectMin(1);
-		productDTO.setAncSelectMax(10);
-        productDTO.setpName("");	//1
-        System.out.println("[로그] 입력된 키워드"+productDTO.getpName());
-        productDTO.setCategory("");	//2
-        System.out.println("[로그] 입력된 카테고리"+productDTO.getCategory());
-        productDTO.setSellingPrice(0);//3
-        ArrayList<ProductDTO> productList = productDAO.selectAll(productDTO);
-        System.out.println("[로그_테스트] selectAll 성공");
-        
-        int cnt = 1;
-        if (productList != null) {
-        	System.out.println("[로그_테스트] != null");
-            for (ProductDTO product : productList) {
-            	System.out.println("상품목록: "+cnt);
-            	System.out.println("상품번호: "+product.getPID());
-                System.out.println("상품명: " + product.getpName());
-                System.out.println("가격: " + product.getSellingPrice());
-                System.out.println("재고: " + product.getpQty());
-                System.out.println("판매량: " + product.getAncTotalQty());
-                System.out.println("_______________________________");
-                cnt++;
-            }
-        } else {
-            System.out.println("상품 리스트가 없거나 오류가 발생했습니다.");
-        }
+//        productDTO.setSearchCondition("상품출력필터");    
+//		productDTO.setAncSelectMin(1);
+//		productDTO.setAncSelectMax(10);
+//        productDTO.setpName("");	//1
+//        System.out.println("[로그] 입력된 키워드"+productDTO.getpName());
+//        productDTO.setCategory("");	//2
+//        System.out.println("[로그] 입력된 카테고리"+productDTO.getCategory());
+//        productDTO.setSellingPrice(0);//3
+//        ArrayList<ProductDTO> productList = productDAO.selectAll(productDTO);
+//        System.out.println("[로그_테스트] selectAll 성공");
+//        
+//        int cnt = 1;
+//        if (productList != null) {
+//        	System.out.println("[로그_테스트] != null");
+//            for (ProductDTO product : productList) {
+//            	System.out.println("상품목록: "+cnt);
+//            	System.out.println("상품번호: "+product.getPID());
+//                System.out.println("상품명: " + product.getpName());
+//                System.out.println("가격: " + product.getSellingPrice());
+//                System.out.println("재고: " + product.getpQty());
+//                System.out.println("판매량: " + product.getAncTotalQty());
+//                System.out.println("_______________________________");
+//                cnt++;
+//            }
+//        } else {
+//            System.out.println("상품 리스트가 없거나 오류가 발생했습니다.");
+//        }
 
 		// 상품상세
 //		productDTO.setSearchCondition("상품상세정보");
@@ -69,34 +69,34 @@ public class ProductTest {
 //		System.out.println(productDTO);			
 
 		// 상품출력페이지
-//		productDTO.setSearchCondition("상품목록페이지");
-//		productDTO.setAncSelectMin(1);
-//		productDTO.setAncSelectMax(8);
-//        ArrayList<ProductDTO> productList = productDAO.selectAll(productDTO);
-//        
-//        if (productList != null && !productList.isEmpty()) {
-//            System.out.println("상품 목록 조회 성공");
-//            
-//            Iterator<ProductDTO> iterator = productList.iterator();
-//            while (iterator.hasNext()) {
-//                ProductDTO product = iterator.next();
-//                System.out.println("상품번호: " + product.getPID());
-//                System.out.println("상품명: " + product.getpName());
-//                System.out.println("상품정보: " + product.getpDetail());
-//                System.out.println("원가: " + product.getCostPrice());
-//                System.out.println("정가: " + product.getRegularPrice());
-//                System.out.println("판매가: " + product.getSellingPrice());
-//                System.out.println("재고: " + product.getpQty());
-//                System.out.println("성분: " + product.getIngredient());
-//                System.out.println("카테고리: " + product.getCategory());
-//                System.out.println("등록일: " + product.getRegTime());
-//                System.out.println("판매상태: " + product.getSellingState());
-//                System.out.println("이미지 경로: " + product.getImagePath());
-//                System.out.println("==========================");
-//            }
-//        } else {
-//            System.out.println("상품 목록 조회 실패");
-//        }
+		productDTO.setSearchCondition("상품목록페이지");
+		productDTO.setAncSelectMin(1);
+		productDTO.setAncSelectMax(8);
+        ArrayList<ProductDTO> productList = productDAO.selectAll(productDTO);
+        
+        if (productList != null && !productList.isEmpty()) {
+            System.out.println("상품 목록 조회 성공");
+            
+            Iterator<ProductDTO> iterator = productList.iterator();
+            while (iterator.hasNext()) {
+                ProductDTO product = iterator.next();
+                System.out.println("상품번호: " + product.getPID());
+                System.out.println("상품명: " + product.getpName());
+                System.out.println("상품정보: " + product.getpDetail());
+                System.out.println("원가: " + product.getCostPrice());
+                System.out.println("정가: " + product.getRegularPrice());
+                System.out.println("판매가: " + product.getSellingPrice());
+                System.out.println("재고: " + product.getpQty());
+                System.out.println("성분: " + product.getIngredient());
+                System.out.println("카테고리: " + product.getCategory());
+                System.out.println("등록일: " + product.getRegTime());
+                System.out.println("판매상태: " + product.getSellingState());
+                System.out.println("이미지 경로: " + product.getImagePath());
+                System.out.println("==========================");
+            }
+        } else {
+            System.out.println("상품 목록 조회 실패");
+        }
 
 		// 상품출력전체
 //		productDTO.setSearchCondition("상품출력전체");
