@@ -8,6 +8,11 @@ public class CartTest {
         CartDAO cDAO = new CartDAO();
         CartDTO cDTO = new CartDTO();
         
+        //동일상품추가
+//        cDTO.setSearchCondition("동일상품추가");
+        
+        
+        
         // 장바구니 상품확인
         cDTO.setSearchCondition("상품확인");
         cDTO.setMid("teemo");
