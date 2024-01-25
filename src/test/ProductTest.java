@@ -11,6 +11,24 @@ public class ProductTest {
 
 		ProductDAO productDAO = new ProductDAO();
 		ProductDTO productDTO = new ProductDTO();
+		
+		//상품판매
+		productDTO.setSearchCondition("판매완료");
+		productDTO.setpQty(25);
+		productDTO.setPID(1);
+		boolean result = productDAO.update(productDTO);
+		if(result) {
+			System.out.println("구매완료(재고차감)");
+		} else {
+			System.out.println("구매실패");
+		}
+		
+		// 최대값
+//		productDTO.setSearchCondition("최대값");
+//		productDTO=productDAO.selectOne(productDTO);
+//		int result = productDTO.getSellingPrice();
+//		System.out.println("최대값 : "+result);
+		
 
 		// 상품추가
 //		productDTO.setSearchCondition("상품추가");

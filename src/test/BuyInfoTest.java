@@ -9,18 +9,27 @@ public class BuyInfoTest {
 		BuyInfoDAO bDAO = new BuyInfoDAO();
 		BuyInfoDTO bDTO = new BuyInfoDTO();
 		
+		// 주문번호 반환
+		bDTO.setSearchCondition("주문번호");
+		bDTO = bDAO.selectOne(bDTO);
+		if(bDTO != null) {
+			System.out.println("구매번호 : "+bDTO.getMaxOrderNum());
+		} else {
+			System.out.println("구매번호 실패");
+		}
+		
         // 구매상태변경
-        bDTO.setSearchCondition("구매상태변경");
-        bDTO.setBID(1);
-        bDTO.setDeliState("배송 완료");
-
-        boolean result = bDAO.update(bDTO);
-
-        if (result) {
-            System.out.println("배송 상태가 업데이트되었습니다.");
-        } else {
-            System.out.println("배송 상태 업데이트 실패");
-        }
+//        bDTO.setSearchCondition("구매상태변경");
+//        bDTO.setBID(1);
+//        bDTO.setDeliState("배송 완료");
+//
+//        boolean result = bDAO.update(bDTO);
+//
+//        if (result) {
+//            System.out.println("배송 상태가 업데이트되었습니다.");
+//        } else {
+//            System.out.println("배송 상태 업데이트 실패");
+//        }
 
 		// 구매내역
 //		bDTO.setSearchCondition("구매내역");

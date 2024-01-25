@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
 public class ProductDAO {
 
 	private Connection conn;
@@ -49,8 +48,11 @@ public class ProductDAO {
 			+ "	  ?, " + "	  ?, " + "	  ?, " + "	  ?, " + "	  ?, " + "	  SYSTIMESTAMP, " + "	  ?, " + "	  ? "
 			+ "	)";
 
+	// 재고변경(상품구매)
+	private static final String UPDATE_P_QTY = "UPDATE PRODUCT SET P_QTY = ? WHERE P_ID = ?";
+	
 	// 상품 판매상태 변경(판매중 -> 판매중지)
-	private static final String UPDATE = "UPDATE PRODUCT " + "SET SELLING_STATE = '판매중지' " + "WHERE P_ID = ?";
+	private static final String UPDATE_SELLING_STATE = "UPDATE PRODUCT SET SELLING_STATE = '판매중지' " + "WHERE P_ID = ?";
 
 	private static final String DELETE = "";
 
@@ -105,24 +107,6 @@ public class ProductDAO {
 		} else if (pDTO.getSearchCondition().equals("상품출력필터")) {
 
 			System.out.println("[로그_제품출력페이지_필터] 진입");
-
-			if (pDTO.getSellingPrice() == 0) {
-
-				try {
-					pstmt = conn.prepareStatement(SELECTONE_MAX_PRICE);
-					ResultSet rs = pstmt.executeQuery();
-					if (rs.next()) {
-						pDTO.setSellingPrice(rs.getInt("PRICE"));
-					}
-					rs.close();
-				} catch (SQLException e) {
-					System.out.println("[로그_맥스값] 오류발생");
-					e.printStackTrace();
-				}
-				if (pDTO != null) {
-					System.out.println("[로그_맥스값] 성공 " + pDTO.getSellingPrice());
-				}
-			}
 
 			try {
 				System.out.println("[로그_제품출력페이지_필터] try진입");
@@ -180,7 +164,9 @@ public class ProductDAO {
 	}
 
 	public ProductDTO selectOne(ProductDTO pDTO) {
-		System.out.println("[로그_SELECTALL 진입]");
+		System.out.println("[로그selectOne 진입]");
+		
+		conn = JDBCUtil.connect();
 
 		ProductDTO productDTO = null;
 
@@ -188,8 +174,6 @@ public class ProductDAO {
 			System.out.println("[로그_상품상세정보] 진입");
 
 			productDTO = new ProductDTO();
-
-			conn = JDBCUtil.connect();
 
 			try {
 				pstmt = conn.prepareStatement(SELECTONE_DETAIL);
@@ -229,6 +213,31 @@ public class ProductDAO {
 				System.out.println("[로그_상품상세] 성공");
 				return productDTO;
 			}
+		} else if (pDTO.getSearchCondition().equals("최대값")) {
+
+			productDTO = new ProductDTO();
+
+			try {
+				pstmt = conn.prepareStatement(SELECTONE_MAX_PRICE);
+				ResultSet rs = pstmt.executeQuery();
+
+				if (rs.next()) {
+					productDTO.setSellingPrice(rs.getInt("PRICE"));
+				} 
+
+				rs.close();
+
+			} catch (SQLException e) {
+				System.out.println("[로그_맥스값] 오류발생");
+				e.printStackTrace();
+			} finally {
+				JDBCUtil.disconnect(pstmt, conn);
+			}
+			if (pDTO != null) {
+				System.out.println("[로그_맥스값] 성공 " + pDTO.getSellingPrice());
+				return productDTO;
+			}
+
 		}
 		System.out.println("[로그_SELECTALL 실패]");
 		return null;
@@ -278,31 +287,58 @@ public class ProductDAO {
 		return true;
 	}
 
-	// 판매중지
+	// 재고 및 판매상태 변경
 	public boolean update(ProductDTO pDTO) {
 
 		conn = JDBCUtil.connect();
-
-		if (pDTO.getSearchCondition().equals("판매중지")) {
-
+		
+		int result;
+		
+		if(pDTO.getSearchCondition().equals("판매완료")){
+			
 			try {
-				pstmt = conn.prepareStatement(UPDATE);
-				pstmt.setInt(1, pDTO.getPID());
-
-				int result = pstmt.executeUpdate();
-
-				if (result <= 0) {
-					return false;
-				}
-
+				pstmt = conn.prepareStatement(UPDATE_P_QTY);
+				pstmt.setInt(1, pDTO.getpQty());
+				pstmt.setInt(2, pDTO.getPID());
+				
+				result = pstmt.executeUpdate();
+				
 			} catch (SQLException e) {
+				System.out.println("[로그]_판매완료 예외처리");
 				e.printStackTrace();
 				return false;
 			} finally {
 				JDBCUtil.disconnect(pstmt, conn);
 			}
+			
+			if(result > 0) {
+				System.out.println("[로그]_판매완료 성공");
+				return true;
+			}
+			
 		}
-		return true;
+		else if (pDTO.getSearchCondition().equals("판매중지")) {
+
+			try {
+				pstmt = conn.prepareStatement(UPDATE_SELLING_STATE);
+				pstmt.setInt(1, pDTO.getPID());
+
+				result = pstmt.executeUpdate();
+
+			} catch (SQLException e) {
+				System.out.println("[로그]_판매중지 예외처리");
+				e.printStackTrace();
+				return false;
+			} finally {
+				JDBCUtil.disconnect(pstmt, conn);
+			}
+			if (result > 0) {
+				System.out.println("[로그]_판매중지 성공");
+				return true;
+			}
+		}
+		System.out.println("[로그]_상품UPDATE 실패");
+		return false;
 	}
 
 	public boolean delete(ProductDTO pDTO) {
