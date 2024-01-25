@@ -8,20 +8,33 @@ public class CartTest {
         CartDAO cDAO = new CartDAO();
         CartDTO cDTO = new CartDTO();
         
+        // 장바구니 상품확인
+        cDTO.setSearchCondition("상품확인");
+        cDTO.setMid("teemo");
+        cDTO.setPid(1);
+        cDTO = cDAO.selectOne(cDTO);
+        if(cDTO != null) {
+        	System.out.println("상품확인 결과 이미 있는 상품");
+        	System.out.println("ID : "+cDTO.getMid());
+        	System.out.println("P_ID : "+cDTO.getPid());
+        } else {
+        	System.out.println("상품확인 결과 장바구니에 없는 상품");
+        }
+        
         
         // 장바구니 삭제
-//        cDTO.setSearchCondition("장바구니삭제");
-//        cDTO.setCid(1);
-        cDTO.setSearchCondition("장바구니비우기");
-        cDTO.setMid("teemo");
-
-        boolean result = cDAO.delete(cDTO);
-
-        if (result) {
-            System.out.println("장바구니 삭제 성공");
-        } else {
-            System.out.println("장바구니 삭제 실패");
-        }
+////        cDTO.setSearchCondition("장바구니삭제");
+////        cDTO.setCid(1);
+//        cDTO.setSearchCondition("장바구니비우기");
+//        cDTO.setMid("teemo");
+//
+//        boolean result = cDAO.delete(cDTO);
+//
+//        if (result) {
+//            System.out.println("장바구니 삭제 성공");
+//        } else {
+//            System.out.println("장바구니 삭제 실패");
+//        }
         
         
 
