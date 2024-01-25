@@ -19,12 +19,12 @@ public class CartDAO {
 
 	/*
 	 * 연산을 DB에서 하는 코드 private static final String
-	 * SELECTALL="SELECT C.C_ID,C.M_ID, C.P_ID, C.C_QTY, P.P_NAME, P.SELLING_PRICE, P.IMAGEPATH, (C.C_QTY * P.SELLING_PRICE) AS TOTAL_PRICE "
+	 * SELECTALL="SELECT C.C_ID,C.M_ID, C.P_ID, C.C_QTY, P.P_NAME, P.SELLING_PRICE, P.IMAGE_PATH, (C.C_QTY * P.SELLING_PRICE) AS TOTAL_PRICE "
 	 * + "FROM CART C " + "JOIN PRODUCT P ON C.P_ID = P.P_ID;";
 	 */
 
 	// 장바구니 목록 출력
-	private static final String SELECTALL = "SELECT C.C_ID, M.M_ID, C.P_ID, C.C_QTY, P.P_NAME, P.SELLING_PRICE, P.IMAGEPATH "
+	private static final String SELECTALL = "SELECT C.C_ID, M.M_ID, C.P_ID, C.C_QTY, P.P_NAME, P.SELLING_PRICE, P.IMAGE_PATH "
 			+ "FROM CART C " + "JOIN PRODUCT P ON C.P_ID = P.P_ID " + "JOIN MEMBER M ON C.M_ID = M.M_ID "
 			+ "WHERE M.M_ID = ?";
 
@@ -76,7 +76,7 @@ public class CartDAO {
 					rsCartDTO.setcQty(rs.getInt("C_QTY"));
 					rsCartDTO.setpName(rs.getString("P_NAME"));
 					rsCartDTO.setSellingPrice(rs.getInt("SELLING_PRICE"));
-					rsCartDTO.setImagePath(rs.getString("IMAGEPATH"));
+					rsCartDTO.setImagePath(rs.getString("IMAGE_PATH"));
 					cartDTO.add(rsCartDTO);
 				}
 				rs.close();

@@ -16,26 +16,26 @@ public class ProductDAO {
 	 */
 
 	// 상품선택(페이지)
-	private static final String SELECTALL_PAGE = "SELECT P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGEPATH "
+	private static final String SELECTALL_PAGE = "SELECT P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGE_PATH "
 			+ "FROM ("
-			+ "    SELECT P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGEPATH, ROWNUM AS RN "
+			+ "    SELECT P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGE_PATH, ROWNUM AS RN "
 			+ "    FROM PRODUCT " + "WHERE SELLING_STATE = '판매중'" + ") " + "WHERE RN BETWEEN ? AND ?";
 
 	// 상품전체
 	private static final String SELECTALL_FILTER = "SELECT P.P_ID, P.P_NAME, P.P_DETAIL, P.COST_PRICE, P.REGULAR_PRICE, "
 			+ " P.SELLING_PRICE, P.P_QTY, P.INGREDIENT, P.CATEGORY, P.REG_TIME, "
-			+ " P.SELLING_STATE, P.IMAGEPATH, NVL(SUM(B.B_QTY), 0) AS TOTAL_B_QTY "
-			+ " FROM (SELECT P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGEPATH, ROWNUM AS RN FROM PRODUCT WHERE SELLING_STATE = '판매중') P "
+			+ " P.SELLING_STATE, P.IMAGE_PATH, NVL(SUM(B.B_QTY), 0) AS TOTAL_B_QTY "
+			+ " FROM (SELECT P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGE_PATH, ROWNUM AS RN FROM PRODUCT WHERE SELLING_STATE = '판매중') P "
 			+ " LEFT JOIN BUYINFO B ON P.P_ID = B.P_ID " + " WHERE RN BETWEEN ? AND ?"
 			+ " AND (P.P_NAME LIKE ? OR P.P_NAME IS NULL) " + " AND (P.CATEGORY LIKE ? OR P.CATEGORY IS NULL) "
 			+ " AND (P.SELLING_PRICE <= ? OR P.SELLING_PRICE IS NULL) "
 			+ " GROUP BY P.P_ID, P.P_NAME, P.P_DETAIL, P.COST_PRICE, P.REGULAR_PRICE, "
-			+ " P.SELLING_PRICE, P.P_QTY, P.INGREDIENT, P.CATEGORY, P.REG_TIME, P.SELLING_STATE, P.IMAGEPATH "
+			+ " P.SELLING_PRICE, P.P_QTY, P.INGREDIENT, P.CATEGORY, P.REG_TIME, P.SELLING_STATE, P.IMAGE_PATH "
 			+ " ORDER BY TOTAL_B_QTY DESC, REG_TIME DESC";
 
 	// 상품상세출력
 	private static final String SELECTONE_DETAIL = "SELECT " + "P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, "
-			+ "SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, " + "SELLING_STATE, IMAGEPATH, USAGE, EXP "
+			+ "SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, " + "SELLING_STATE, IMAGE_PATH, USAGE, EXP "
 			+ "FROM PRODUCT " + "WHERE P_ID = ?";
 
 	// 최대가 반환
@@ -43,7 +43,7 @@ public class ProductDAO {
 
 	// 성공한 Insert
 	private static final String INSERT = "INSERT INTO PRODUCT "
-			+ "(P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGEPATH) "
+			+ "(P_ID, P_NAME, P_DETAIL, COST_PRICE, REGULAR_PRICE, SELLING_PRICE, P_QTY, INGREDIENT, CATEGORY, REG_TIME, SELLING_STATE, IMAGE_PATH) "
 			+ "	VALUES ( " + "	  NVL((SELECT MAX(P_ID) FROM PRODUCT), 0) + 1, " + "	  ?, " + "	  ?, " + "	  ?, "
 			+ "	  ?, " + "	  ?, " + "	  ?, " + "	  ?, " + "	  ?, " + "	  SYSTIMESTAMP, " + "	  ?, " + "	  ? "
 			+ "	)";
@@ -86,7 +86,7 @@ public class ProductDAO {
 					productTempDTO.setCategory(rs.getString("CATEGORY"));
 					productTempDTO.setRegTime(rs.getTimestamp("REG_TIME"));
 					productTempDTO.setSellingState(rs.getString("SELLING_STATE"));
-					productTempDTO.setImagePath(rs.getString("IMAGEPATH"));
+					productTempDTO.setImagePath(rs.getString("IMAGE_PATH"));
 					productTempDTO.setpDetail(rs.getString("P_DETAIL"));
 					productList.add(productTempDTO);
 				}
@@ -140,7 +140,7 @@ public class ProductDAO {
 					productTempDTO.setCategory(rs.getString("CATEGORY"));
 					productTempDTO.setRegTime(rs.getTimestamp("REG_TIME"));
 					productTempDTO.setSellingState(rs.getString("SELLING_STATE"));
-					productTempDTO.setImagePath(rs.getString("IMAGEPATH"));
+					productTempDTO.setImagePath(rs.getString("IMAGE_PATH"));
 					productTempDTO.setpDetail(rs.getString("P_DETAIL"));
 					productTempDTO.setAncTotalQty(rs.getInt("TOTAL_B_QTY"));
 					productList.add(productTempDTO);
@@ -193,7 +193,7 @@ public class ProductDAO {
 					productDTO.setCategory(rs.getString("CATEGORY"));
 					productDTO.setRegTime(rs.getTimestamp("REG_TIME"));
 					productDTO.setSellingState(rs.getString("SELLING_STATE"));
-					productDTO.setImagePath(rs.getString("IMAGEPATH"));
+					productDTO.setImagePath(rs.getString("IMAGE_PATH"));
 					productDTO.setUsage(rs.getString("USAGE"));
 					productDTO.setExp(rs.getString("EXP"));
 				} else {
