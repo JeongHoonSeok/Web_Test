@@ -14,8 +14,8 @@ public class ProductTest {
 		
 		//상품판매
 		productDTO.setSearchCondition("판매완료");
-		productDTO.setpQty(25);
-		productDTO.setPID(1);
+		productDTO.setpQty(6);
+		productDTO.setPID(2);
 		boolean result = productDAO.update(productDTO);
 		if(result) {
 			System.out.println("구매완료(재고차감)");

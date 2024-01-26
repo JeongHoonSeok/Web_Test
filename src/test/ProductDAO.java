@@ -50,7 +50,7 @@ public class ProductDAO {
 			+ "	)";
 
 	// 재고변경(상품구매)
-	private static final String UPDATE_P_QTY = "UPDATE PRODUCT SET P_QTY = ? WHERE P_ID = ?";
+	private static final String UPDATE_P_QTY = "UPDATE PRODUCT SET P_QTY = P_QTY - ? WHERE P_ID = ?";
 	
 	// 상품 판매상태 변경(판매중 -> 판매중지)
 	private static final String UPDATE_SELLING_STATE = "UPDATE PRODUCT SET SELLING_STATE = '판매중지' " + "WHERE P_ID = ?";
