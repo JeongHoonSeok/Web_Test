@@ -15,13 +15,13 @@ public class CartTest {
         
         // 장바구니 상품확인
         cDTO.setSearchCondition("상품확인");
-        cDTO.setMid("teemo");
-        cDTO.setPid(1);
+        cDTO.setMID("teemo");
+        cDTO.setPID(1);
         cDTO = cDAO.selectOne(cDTO);
         if(cDTO != null) {
         	System.out.println("상품확인 결과 이미 있는 상품");
-        	System.out.println("ID : "+cDTO.getMid());
-        	System.out.println("P_ID : "+cDTO.getPid());
+        	System.out.println("ID : "+cDTO.getMID());
+        	System.out.println("P_ID : "+cDTO.getPID());
         } else {
         	System.out.println("상품확인 결과 장바구니에 없는 상품");
         }

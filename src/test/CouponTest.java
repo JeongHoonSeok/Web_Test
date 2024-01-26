@@ -13,13 +13,13 @@ public class CouponTest {
 		CouponDAO couponDAO = new CouponDAO();
 
 		// 쿠폰삭제
-		couponDTO.setSearchCondition("쿠폰삭제");
-		boolean result = couponDAO.delete(couponDTO);
-		if (result == true) {
-			System.out.println("삭제성공");
-		} else {
-			System.out.println("삭제실패");
-		}
+//		couponDTO.setSearchCondition("쿠폰삭제");
+//		boolean result = couponDAO.delete(couponDTO);
+//		if (result == true) {
+//			System.out.println("삭제성공");
+//		} else {
+//			System.out.println("삭제실패");
+//		}
 
 		// 쿠폰사용
 //		couponDTO.setSearchCondition("쿠폰사용");
@@ -54,14 +54,13 @@ public class CouponTest {
 //		}
 
 		// 쿠폰추가
-//		couponDTO.setSearchCondition("쿠폰추가");
-//		couponDTO.setMID("teemo");
-//		couponDTO.setCpName("테스트 쿠폰");
-//		couponDTO.setDiscount(30);
-//		couponDTO.setCategory("간");
-//
-//		boolean flag = couponDAO.insert(couponDTO);
-//		System.out.println(flag);
+		couponDTO.setSearchCondition("쿠폰추가");
+		couponDTO.setMID("teemo");
+		couponDTO.setCpName("테스트 쿠폰");
+		couponDTO.setDiscount(30);
+		couponDTO.setCategory("간");
+		boolean flag = couponDAO.insert(couponDTO);
+		System.out.println(flag);
 
 		// 아이디 중복검사
 //		memberDTO.setMid("teemo");

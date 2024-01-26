@@ -10,6 +10,18 @@ public class MemberTest {
 
 		MemberDTO memberDTO = new MemberDTO();
 		MemberDAO memberDAO = new MemberDAO();
+		
+		//회원 주문정보
+		memberDTO.setSearchCondition("주문정보");
+		memberDTO.setMID("teemo");
+		memberDTO = memberDAO.selectOne(memberDTO);
+		if(memberDTO != null) {
+			System.out.println("이름 : "+memberDTO.getmName());
+			System.out.println("전화번호 : "+memberDTO.getPhoneNumber());
+			System.out.println("주소 : "+memberDTO.getmPostCode()+" "+memberDTO.getmAddress()+" "+memberDTO.getmDetailedAddress());		
+			System.out.println("메일 : "+memberDTO.getEmail());
+			System.out.println("_______________________________________________________");
+		}
 
 		// 아이디 중복검사
 //		memberDTO.setMid("teemo");
@@ -54,10 +66,10 @@ public class MemberTest {
 //		System.out.println(memberDAO.selectOne(memberDTO));
 		
 		//회원정보
-		memberDTO.setSearchCondition("회원정보");
-		memberDTO.setMid("teemo");
-		memberDTO.setmPassword("1234");
-		System.out.println(memberDAO.selectOne(memberDTO));
+//		memberDTO.setSearchCondition("회원정보");
+//		memberDTO.setMID("teemo");
+//		memberDTO.setmPassword("1234");
+//		System.out.println(memberDAO.selectOne(memberDTO));
 
 		// 회원정보 변경
 //		Date dob = null;
