@@ -46,6 +46,9 @@ VALUES (
     '123번지 456호'
 );
 
+-- 주문번호의 최대값 +1 을 준다
+SELECT NVL(MAX(ORDER_NUM),0)+1 AS MAX_ORDER_NUM FROM BUYINFO;
+
 -- 판매량 반환
 SELECT P_ID, SUM(B_Qty) AS TOTAL_QTY
 FROM BUYINFO

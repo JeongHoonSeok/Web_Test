@@ -320,7 +320,7 @@ INSERT INTO BUYINFO
 VALUES (
     NVL((SELECT MAX(B_ID) FROM BUYINFO), 0) + 1,
     'teemo', 
-    5, 
+    1, 
     'CP001', 
     12345, 
     '결재 완료', 
@@ -328,16 +328,19 @@ VALUES (
     50000, 
     CURRENT_TIMESTAMP, -- 현재 시간을 타임스탬프로 설정
     12345, 
-    '서울시 강남구', 
+    '서울시 강남구',
     '123번지 456호'
 );
 
--- 판매량 반환
-SELECT P_ID, SUM(B_Qty) AS TOTAL_QTY
-FROM BUYINFO
-WHERE P_ID = 1
-GROUP BY P_ID;
+-- 주문번호의 최대값 +1 을 준다
+SELECT NVL(MAX(ORDER_NUM),0)+1 AS MAX_ORDER_NUM FROM BUYINFO;
 
+-- 판매량 반환
+SELECT SUM(B_Qty) AS TOTAL_QTY
+FROM BUYINFO
+WHERE P_ID = 5;
+
+-- 해당 회원의 구매내역
 SELECT B_ID, M_ID, P_ID, CP_ID, ORDER_NUM, DELI_STATE, B_QTY, PAYMENT_PRICE, BUY_TIME, B_POSTCODE, B_ADDRESS, B_DETAILED_ADDRESS 
 FROM BUYINFO 
 WHERE M_ID = 'teemo';

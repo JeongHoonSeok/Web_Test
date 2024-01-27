@@ -12,16 +12,24 @@ public class ProductTest {
 		ProductDAO productDAO = new ProductDAO();
 		ProductDTO productDTO = new ProductDTO();
 		
+		//카테고리
+		productDTO.setSearchCondition("카테고리");
+		productDTO.setPID(1);
+		productDTO=productDAO.selectOne(productDTO);
+		String category = productDTO.getCategory();
+		System.out.println("카테고리 : "+category);
+		
+		
 		//상품판매
-		productDTO.setSearchCondition("판매완료");
-		productDTO.setpQty(6);
-		productDTO.setPID(2);
-		boolean result = productDAO.update(productDTO);
-		if(result) {
-			System.out.println("구매완료(재고차감)");
-		} else {
-			System.out.println("구매실패");
-		}
+//		productDTO.setSearchCondition("판매완료");
+//		productDTO.setpQty(6);
+//		productDTO.setPID(2);
+//		boolean result = productDAO.update(productDTO);
+//		if(result) {
+//			System.out.println("구매완료(재고차감)");
+//		} else {
+//			System.out.println("구매실패");
+//		}
 		
 		// 최대값
 //		productDTO.setSearchCondition("최대값");
@@ -87,34 +95,34 @@ public class ProductTest {
 //		System.out.println(productDTO);			
 
 		// 상품출력페이지
-		productDTO.setSearchCondition("상품목록페이지");
-		productDTO.setAncSelectMin(1);
-		productDTO.setAncSelectMax(8);
-        ArrayList<ProductDTO> productList = productDAO.selectAll(productDTO);
-        
-        if (productList != null && !productList.isEmpty()) {
-            System.out.println("상품 목록 조회 성공");
-            
-            Iterator<ProductDTO> iterator = productList.iterator();
-            while (iterator.hasNext()) {
-                ProductDTO product = iterator.next();
-                System.out.println("상품번호: " + product.getPID());
-                System.out.println("상품명: " + product.getpName());
-                System.out.println("상품정보: " + product.getpDetail());
-                System.out.println("원가: " + product.getCostPrice());
-                System.out.println("정가: " + product.getRegularPrice());
-                System.out.println("판매가: " + product.getSellingPrice());
-                System.out.println("재고: " + product.getpQty());
-                System.out.println("성분: " + product.getIngredient());
-                System.out.println("카테고리: " + product.getCategory());
-                System.out.println("등록일: " + product.getRegTime());
-                System.out.println("판매상태: " + product.getSellingState());
-                System.out.println("이미지 경로: " + product.getImagePath());
-                System.out.println("==========================");
-            }
-        } else {
-            System.out.println("상품 목록 조회 실패");
-        }
+//		productDTO.setSearchCondition("상품목록페이지");
+//		productDTO.setAncSelectMin(1);
+//		productDTO.setAncSelectMax(8);
+//        ArrayList<ProductDTO> productList = productDAO.selectAll(productDTO);
+//        
+//        if (productList != null && !productList.isEmpty()) {
+//            System.out.println("상품 목록 조회 성공");
+//            
+//            Iterator<ProductDTO> iterator = productList.iterator();
+//            while (iterator.hasNext()) {
+//                ProductDTO product = iterator.next();
+//                System.out.println("상품번호: " + product.getPID());
+//                System.out.println("상품명: " + product.getpName());
+//                System.out.println("상품정보: " + product.getpDetail());
+//                System.out.println("원가: " + product.getCostPrice());
+//                System.out.println("정가: " + product.getRegularPrice());
+//                System.out.println("판매가: " + product.getSellingPrice());
+//                System.out.println("재고: " + product.getpQty());
+//                System.out.println("성분: " + product.getIngredient());
+//                System.out.println("카테고리: " + product.getCategory());
+//                System.out.println("등록일: " + product.getRegTime());
+//                System.out.println("판매상태: " + product.getSellingState());
+//                System.out.println("이미지 경로: " + product.getImagePath());
+//                System.out.println("==========================");
+//            }
+//        } else {
+//            System.out.println("상품 목록 조회 실패");
+//        }
 
 		// 상품출력전체
 //		productDTO.setSearchCondition("상품출력전체");
