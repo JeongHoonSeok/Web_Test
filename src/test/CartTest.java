@@ -65,16 +65,16 @@ public class CartTest {
         
 
         // 장바구니 추가 테스트
-//        cDTO.setMid("teemo"); // 회원 ID
-//        cDTO.setPid(4); // 상품 ID
-//        cDTO.setcQty(100); // 수량
-//        cDTO.setSearchCondition("장바구니추가"); // 검색 조건 설정
-//        boolean result = cDAO.insert(cDTO);
-//        if (result) {
-//            System.out.println("장바구니에 상품 추가 성공");
-//        } else {
-//            System.out.println("장바구니에 상품 추가 실패");
-//        }
+        cDTO.setMID("teemo"); // 회원 ID
+        cDTO.setPID(4); // 상품 ID
+        cDTO.setcQty(100); // 수량
+        cDTO.setSearchCondition("장바구니추가"); // 검색 조건 설정
+        boolean result = cDAO.insert(cDTO);
+        if (result) {
+            System.out.println("장바구니에 상품 추가 성공");
+        } else {
+            System.out.println("장바구니에 상품 추가 실패");
+        }
         
         
     }

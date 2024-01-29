@@ -11,6 +11,18 @@ public class MemberTest {
 		MemberDTO memberDTO = new MemberDTO();
 		MemberDAO memberDAO = new MemberDAO();
 		
+		// 비밀번호 확인
+//		memberDTO.setSearchCondition("비밀번호확인");
+//		memberDTO.setMID("teemo");
+//		memberDTO.setmPassword("1234");
+//		memberDTO = memberDAO.selectOne(memberDTO);
+//		if(memberDTO != null) {
+//			System.out.println("비빌번호 확인 성공 : "+memberDTO.getmPassword());
+//		} else {
+//			System.out.println("실패");
+//		}
+		
+		
 		//회원 주문정보
 		memberDTO.setSearchCondition("주문정보");
 		memberDTO.setMID("teemo");
