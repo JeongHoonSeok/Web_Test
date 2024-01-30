@@ -59,9 +59,9 @@ public class CartDAO {
 					rsCartDTO.setMID(rs.getString("M_ID"));
 					rsCartDTO.setPID(rs.getInt("P_ID"));
 					rsCartDTO.setcQty(rs.getInt("C_QTY"));
-					rsCartDTO.setpName(rs.getString("P_NAME"));
-					rsCartDTO.setSellingPrice(rs.getInt("SELLING_PRICE"));
-					rsCartDTO.setImagePath(rs.getString("IMAGE_PATH"));
+					rsCartDTO.setAncPName(rs.getString("P_NAME"));
+					rsCartDTO.setAncSellingPrice(rs.getInt("SELLING_PRICE"));
+					rsCartDTO.setAncImagePath(rs.getString("IMAGE_PATH"));
 					cartDTO.add(rsCartDTO);
 				}
 				rs.close();

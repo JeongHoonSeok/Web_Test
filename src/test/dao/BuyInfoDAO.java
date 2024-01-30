@@ -24,10 +24,11 @@ public class BuyInfoDAO {
 			+ "P.P_NAME, P.IMAGE_PATH "
 			+ "FROM BUYINFO B "
 			+ "JOIN PRODUCT P ON B.P_ID = P.P_ID "
-			+ "B.M_ID = ? AND B.DELI_STATE NOT IN ('취소', '환불')";
+			+ "WHERE B.M_ID = ? AND B.DELI_STATE NOT IN ('취소', '환불') "
+			+ "ORDER BY B.ORDER_NUM DESC";
 	
 	// 주문번호의 최대값 +1
-	private static final String SELECTALL_MAX_ORDER_NUM = "SELECT NVL(MAX(ORDER_NUM),0)+1 AS MAX_ORDER_NUM FROM BUYINFO";
+	private static final String SELECTONE_MAX_ORDER_NUM = "SELECT NVL(MAX(ORDER_NUM),0)+1 AS MAX_ORDER_NUM FROM BUYINFO";
 
 	// 판매량 반환
 	// 전달받은 값과 P_ID가 일치하는 행의 B_Qty를 더한다
@@ -144,7 +145,7 @@ public class BuyInfoDAO {
 			buyInfoDTO = new BuyInfoDTO();
 			
 			try {
-				pstmt = conn.prepareStatement(SELECTALL_MAX_ORDER_NUM);
+				pstmt = conn.prepareStatement(SELECTONE_MAX_ORDER_NUM);
 				
 				ResultSet rs = pstmt.executeQuery();
 				

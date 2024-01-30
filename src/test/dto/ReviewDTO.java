@@ -14,7 +14,7 @@ public class ReviewDTO {
     private int ancPID;
     private String ancPName;
     private String ancMName;
-    
+    private String ancEmail;
 	public int getRID() {
 		return RID;
 	}
@@ -75,10 +75,18 @@ public class ReviewDTO {
 	public void setAncMName(String ancMName) {
 		this.ancMName = ancMName;
 	}
+	public String getAncEmail() {
+		return ancEmail;
+	}
+	public void setAncEmail(String ancEmail) {
+		this.ancEmail = ancEmail;
+	}
 	@Override
 	public String toString() {
 		return "ReviewDTO [RID=" + RID + ", MID=" + MID + ", BID=" + BID + ", score=" + score + ", contents=" + contents
 				+ ", createTime=" + createTime + ", searchCondition=" + searchCondition + ", ancPID=" + ancPID
-				+ ", ancPName=" + ancPName + ", ancMName=" + ancMName + "]";
+				+ ", ancPName=" + ancPName + ", ancMName=" + ancMName + ", ancEmail=" + ancEmail + "]";
 	}
+    
+
 }

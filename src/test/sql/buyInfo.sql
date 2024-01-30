@@ -12,7 +12,8 @@ CREATE TABLE BUYINFO (
     -- 5. 주문번호
     ORDER_NUM INT NOT NULL,        
 	-- 6. 배송 상태         
-    DELI_STATE VARCHAR2(75) DEFAULT '결재 완료' NOT NULL,     
+	-- 오타수정 결재 -> 결제
+    DELI_STATE VARCHAR2(75) DEFAULT '결제완료' NOT NULL,     
     -- 7. 구매 수량
     B_QTY INT NOT NULL,
     -- 8. 결제 금액
