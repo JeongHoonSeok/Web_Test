@@ -48,7 +48,7 @@ public class BuyInfoTest {
                 System.out.println("배송상태: " + buyInfoDTO.getDeliState());
                 System.out.println("구매수량: " + buyInfoDTO.getbQty());
                 System.out.println("결제금액: " + buyInfoDTO.getPaymentPrice());
-                System.out.println("구매일: " + buyInfoDTO.getBuyTime());
+                System.out.println("구매일: " + buyInfoDTO.getAncBuyTime());
                 System.out.println("우편번호: " + buyInfoDTO.getbPostCode());
                 System.out.println("도로명주소: " + buyInfoDTO.getbAddress());
                 System.out.println("상세주소: " + buyInfoDTO.getbDetailedAddress());
