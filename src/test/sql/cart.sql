@@ -12,7 +12,8 @@ CREATE TABLE CART (
 
 -------------------------------------------------------카트 샘플 코드 --------------------------------------------------------------------------
 --장바구니에 담기
-INSERT INTO CART (C_ID, M_ID, P_ID, C_QTY) VALUES (NVL((SELECT MAX(C_ID) FROM CART), 0)+1, 'teemo', 1, 1);
+INSERT INTO CART (C_ID, M_ID, P_ID, C_QTY) 
+VALUES (NVL((SELECT MAX(C_ID) FROM CART), 0)+1, 'teemo', 1, 1);
 
 --조인해서 장바구니에 출력하기 
 SELECT C.C_ID, C.P_ID, M.M_ID, C.C_QTY, P.P_NAME, P.SELLING_PRICE, P.IMAGEPATH

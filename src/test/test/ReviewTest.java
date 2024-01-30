@@ -37,30 +37,30 @@ public class ReviewTest {
 //        }
 	
         // 리뷰상세
-        reviewDTO.setSearchCondition("리뷰상세");
-        reviewDTO.setRID(1);
-        
-        reviewDTO = reviewDAO.selectOne(reviewDTO);
-        if (reviewDTO != null) {
-            System.out.println("조회된 리뷰 정보:");
-            System.out.println("리뷰 ID: " + reviewDTO.getRID());
-            System.out.println("회원 ID: " + reviewDTO.getMID());
-            System.out.println("구매 번호: " + reviewDTO.getBID());
-            System.out.println("별점: " + reviewDTO.getScore());
-            System.out.println("리뷰 내용: " + reviewDTO.getContents());
-            System.out.println("작성 시간: " + reviewDTO.getCreateTime());
-            System.out.println("상품 ID: " + reviewDTO.getAncPID());
-            System.out.println("상품 이름: " + reviewDTO.getAncPName());
-            System.out.println("회원 이름: " + reviewDTO.getAncMName());
-            System.out.println("이메일 : "+ reviewDTO.getAncEmail());
-        } else {
-            System.out.println("리뷰를 찾을 수 없습니다.");
-        }
+//        reviewDTO.setSearchCondition("리뷰상세");
+//        reviewDTO.setRID(1);
+//        
+//        reviewDTO = reviewDAO.selectOne(reviewDTO);
+//        if (reviewDTO != null) {
+//            System.out.println("조회된 리뷰 정보:");
+//            System.out.println("리뷰 ID: " + reviewDTO.getRID());
+//            System.out.println("회원 ID: " + reviewDTO.getMID());
+//            System.out.println("구매 번호: " + reviewDTO.getBID());
+//            System.out.println("별점: " + reviewDTO.getScore());
+//            System.out.println("리뷰 내용: " + reviewDTO.getContents());
+//            System.out.println("작성 시간: " + reviewDTO.getCreateTime());
+//            System.out.println("상품 ID: " + reviewDTO.getAncPID());
+//            System.out.println("상품 이름: " + reviewDTO.getAncPName());
+//            System.out.println("회원 이름: " + reviewDTO.getAncMName());
+//            System.out.println("이메일 : "+ reviewDTO.getAncEmail());
+//        } else {
+//            System.out.println("리뷰를 찾을 수 없습니다.");
+//        }
 		
 		
 		// 리뷰조회
-//		reviewDTO.setSearchCondition("내리뷰");
-//		reviewDTO.setMID("YUMI");
+		reviewDTO.setSearchCondition("내리뷰");
+		reviewDTO.setMID("YUMI");
 //		reviewDTO.setSearchCondition("상품리뷰");
 //		reviewDTO.setAncPID(1);
 //		Reviews = reviewDAO.selectAll(reviewDTO);
