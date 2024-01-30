@@ -1,4 +1,4 @@
-package test;
+package test.dto;
 
 import java.sql.Timestamp;
 
@@ -18,6 +18,10 @@ public class BuyInfoDTO {
     private String searchCondition;
     // 해당 구매에 대한 리뷰 작성여부_01.30
     private int hasReview;
+    // 컬럼에 없는 멤버변수
+    private String ancPName;
+    private String ancImagePath;
+    
     
     
 	public int getBID() {
@@ -104,12 +108,24 @@ public class BuyInfoDTO {
 	public void setHasReview(int hasReview) {
 		this.hasReview = hasReview;
 	}
+	public String getAncPName() {
+		return ancPName;
+	}
+	public void setAncPName(String ancPName) {
+		this.ancPName = ancPName;
+	}
+	public String getAncImagePath() {
+		return ancImagePath;
+	}
+	public void setAncImagePath(String ancImagePath) {
+		this.ancImagePath = ancImagePath;
+	}
 	@Override
 	public String toString() {
 		return "BuyInfoDTO [BID=" + BID + ", MID=" + MID + ", PID=" + PID + ", CPID=" + CPID + ", orderNum=" + orderNum
 				+ ", deliState=" + deliState + ", bQty=" + bQty + ", paymentPrice=" + paymentPrice + ", buyTime="
 				+ buyTime + ", bPostCode=" + bPostCode + ", bAddress=" + bAddress + ", bDetailedAddress="
-				+ bDetailedAddress + ", searchCondition=" + searchCondition + ", hasReview=" + hasReview + "]";
+				+ bDetailedAddress + ", searchCondition=" + searchCondition + ", hasReview=" + hasReview + ", ancPName="
+				+ ancPName + ", ancImagePath=" + ancImagePath + "]";
 	}
-
 }

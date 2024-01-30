@@ -1,9 +1,12 @@
-package test;
+package test.test;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
+
+import test.dao.ProductDAO;
+import test.dto.ProductDTO;
 
 public class ProductTest {
 

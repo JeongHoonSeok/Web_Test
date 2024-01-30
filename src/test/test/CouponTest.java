@@ -1,9 +1,12 @@
-package test;
+package test.test;
 
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+import test.dao.CouponDAO;
+import test.dto.CouponDTO;
 
 public class CouponTest {
 

@@ -1,10 +1,13 @@
-package test;
+package test.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import test.JDBCUtil;
+import test.dto.ProductDTO;
 
 public class ProductDAO {
 

@@ -1,8 +1,11 @@
-package test;
+package test.test;
 
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
+import test.dao.MemberDAO;
+import test.dto.MemberDTO;
 
 public class MemberTest {
 

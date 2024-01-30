@@ -1,4 +1,4 @@
-package test;
+package test.dto;
 
 import java.sql.Timestamp;
 
@@ -10,11 +10,10 @@ public class ReviewDTO {
     private String contents;
     private Timestamp createTime;
     private String searchCondition;
-    // 조인
-    private int PID;
-    private String pNAME;
-    private String mName;
-    
+    // 컬럼에 없는 멤버변수
+    private int ancPID;
+    private String ancPName;
+    private String ancMName;
     
 	public int getRID() {
 		return RID;
@@ -58,31 +57,28 @@ public class ReviewDTO {
 	public void setSearchCondition(String searchCondition) {
 		this.searchCondition = searchCondition;
 	}
-	public int getPID() {
-		return PID;
+	public int getAncPID() {
+		return ancPID;
 	}
-	public void setPID(int pID) {
-		PID = pID;
+	public void setAncPID(int ancPID) {
+		this.ancPID = ancPID;
 	}
-	public String getpNAME() {
-		return pNAME;
+	public String getAncPName() {
+		return ancPName;
 	}
-	public void setpNAME(String pNAME) {
-		this.pNAME = pNAME;
+	public void setAncPName(String ancPName) {
+		this.ancPName = ancPName;
 	}
-	public String getmName() {
-		return mName;
+	public String getAncMName() {
+		return ancMName;
 	}
-	public void setmName(String mName) {
-		this.mName = mName;
+	public void setAncMName(String ancMName) {
+		this.ancMName = ancMName;
 	}
 	@Override
 	public String toString() {
 		return "ReviewDTO [RID=" + RID + ", MID=" + MID + ", BID=" + BID + ", score=" + score + ", contents=" + contents
-				+ ", createTime=" + createTime + ", searchCondition=" + searchCondition + ", PID=" + PID + ", pNAME="
-				+ pNAME + ", mName=" + mName + "]";
+				+ ", createTime=" + createTime + ", searchCondition=" + searchCondition + ", ancPID=" + ancPID
+				+ ", ancPName=" + ancPName + ", ancMName=" + ancMName + "]";
 	}
-    
-
-	
 }

@@ -1,4 +1,4 @@
-package test;
+package test.dto;
 
 import java.sql.Timestamp;
 
@@ -17,18 +17,11 @@ public class ProductDTO {
     private String category;
     private Timestamp regTime;
     private String sellingState;
-    private String searchCondition;
-    // 사진경로
     private String imagePath;
+    private String searchCondition;
+    // 컬럼에 없는 멤버변수
     private int ancSelectMin;
     private int ancSelectMax;
-    // 조인에 사용하는 멤버변수
-//    private int ancRID;
-//    private String ancMID;
-//    private int ancBID;
-//    private int ancScore;
-//    private String ancContents;
-//    private Timestamp ancCreateTime;
     private int ancTotalQty;
     
 	public int getPID() {
