@@ -24,7 +24,7 @@ INSERT INTO REVIEW
 VALUES (
     NVL((SELECT MAX(R_ID) FROM REVIEW), 0) + 1,
     'YUMI', 
-    1, 
+    3, 
     5, 
     '값 싸고 맛있는 영양제3', 
     CURRENT_TIMESTAMP

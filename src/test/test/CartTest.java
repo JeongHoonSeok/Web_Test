@@ -78,9 +78,9 @@ public class CartTest {
                 System.out.println("장바구니 ID: " + cartDTO.getCID());
                 System.out.println("상품 ID: " + cartDTO.getPID());
                 System.out.println("수량: " + cartDTO.getcQty());
-                System.out.println("상품명: " + cartDTO.getpName());
-                System.out.println("판매 가격: " + cartDTO.getSellingPrice());
-                System.out.println("이미지 경로: " + cartDTO.getImagePath());
+                System.out.println("상품명: " + cartDTO.getAncPName());
+                System.out.println("판매 가격: " + cartDTO.getAncSellingPrice());
+                System.out.println("이미지 경로: " + cartDTO.getAncImagePath());
                 System.out.println("");
             }
         }
