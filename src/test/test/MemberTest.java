@@ -14,6 +14,25 @@ public class MemberTest {
 		MemberDTO memberDTO = new MemberDTO();
 		MemberDAO memberDAO = new MemberDAO();
 		
+		// 회원정보
+		memberDTO.setSearchCondition("회원정보");
+		memberDTO.setMID("teemo");
+		memberDTO = memberDAO.selectOne(memberDTO);
+		
+		if(memberDTO != null) {
+			System.out.println("회원이름 : "+memberDTO.getmName());
+			System.out.println("생년월일 : "+memberDTO.getDob());
+			System.out.println("전화번호 : "+memberDTO.getPhoneNumber());
+			System.out.println("메일주소 : "+memberDTO.getEmail());
+			System.out.println("우편번호 : "+memberDTO.getmPostCode());
+			System.out.println("일반주소 : "+memberDTO.getmAddress());
+			System.out.println("상세주소 : "+memberDTO.getmDetailedAddress());
+			System.out.println("건강상태 : "+memberDTO.getHealth());
+		} else {
+			System.out.println("없는 회원 또는 오류가 발생하였습니다");
+		}
+		
+		
 		// 비밀번호 확인
 //		memberDTO.setSearchCondition("비밀번호확인");
 //		memberDTO.setMID("teemo");
@@ -27,16 +46,16 @@ public class MemberTest {
 		
 		
 		//회원 주문정보
-		memberDTO.setSearchCondition("주문정보");
-		memberDTO.setMID("teemo");
-		memberDTO = memberDAO.selectOne(memberDTO);
-		if(memberDTO != null) {
-			System.out.println("이름 : "+memberDTO.getmName());
-			System.out.println("전화번호 : "+memberDTO.getPhoneNumber());
-			System.out.println("주소 : "+memberDTO.getmPostCode()+" "+memberDTO.getmAddress()+" "+memberDTO.getmDetailedAddress());		
-			System.out.println("메일 : "+memberDTO.getEmail());
-			System.out.println("_______________________________________________________");
-		}
+//		memberDTO.setSearchCondition("주문정보");
+//		memberDTO.setMID("teemo");
+//		memberDTO = memberDAO.selectOne(memberDTO);
+//		if(memberDTO != null) {
+//			System.out.println("이름 : "+memberDTO.getmName());
+//			System.out.println("전화번호 : "+memberDTO.getPhoneNumber());
+//			System.out.println("주소 : "+memberDTO.getmPostCode()+" "+memberDTO.getmAddress()+" "+memberDTO.getmDetailedAddress());		
+//			System.out.println("메일 : "+memberDTO.getEmail());
+//			System.out.println("_______________________________________________________");
+//		}
 
 		// 아이디 중복검사
 //		memberDTO.setMid("teemo");

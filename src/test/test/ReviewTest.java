@@ -24,17 +24,17 @@ public class ReviewTest {
 //        }
 		
 		//리뷰작성
-//		reviewDTO.setSearchCondition("리뷰작성");
-//        reviewDTO.setMID("YUMI");
-//        reviewDTO.setBID(1);
-//        reviewDTO.setScore(5);
-//        reviewDTO.setContents("좋아요!");
-//        boolean result = reviewDAO.insert(reviewDTO);
-//        if (result) {
-//            System.out.println("리뷰가 성공적으로 추가되었습니다.");
-//        } else {
-//            System.out.println("리뷰 추가에 실패하였습니다.");
-//        }
+		reviewDTO.setSearchCondition("리뷰작성");
+        reviewDTO.setMID("YUMI");
+        reviewDTO.setBID(16);
+        reviewDTO.setScore(5);
+        reviewDTO.setContents("좋아요!");
+        boolean result = reviewDAO.insert(reviewDTO);
+        if (result) {
+            System.out.println("리뷰가 성공적으로 추가되었습니다.");
+        } else {
+            System.out.println("리뷰 추가에 실패하였습니다.");
+        }
 	
         // 리뷰상세
 //        reviewDTO.setSearchCondition("리뷰상세");
@@ -59,8 +59,8 @@ public class ReviewTest {
 		
 		
 		// 리뷰조회
-		reviewDTO.setSearchCondition("내리뷰");
-		reviewDTO.setMID("YUMI");
+//		reviewDTO.setSearchCondition("내리뷰");
+//		reviewDTO.setMID("YUMI");
 //		reviewDTO.setSearchCondition("상품리뷰");
 //		reviewDTO.setAncPID(1);
 //		Reviews = reviewDAO.selectAll(reviewDTO);
