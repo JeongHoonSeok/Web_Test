@@ -16,11 +16,11 @@ public class ProductTest {
 		ProductDTO productDTO = new ProductDTO();
 		
 		//카테고리
-		productDTO.setSearchCondition("카테고리");
-		productDTO.setPID(1);
-		productDTO=productDAO.selectOne(productDTO);
-		String category = productDTO.getCategory();
-		System.out.println("카테고리 : "+category);
+//		productDTO.setSearchCondition("카테고리");
+//		productDTO.setPID(1);
+//		productDTO=productDAO.selectOne(productDTO);
+//		String category = productDTO.getCategory();
+//		System.out.println("카테고리 : "+category);
 		
 		
 		//상품판매
@@ -63,33 +63,33 @@ public class ProductTest {
 //		}
 
 		// 필터검색
-//        productDTO.setSearchCondition("상품출력필터");    
-//		productDTO.setAncSelectMin(1);
-//		productDTO.setAncSelectMax(10);
-//        productDTO.setpName("");	//1
-//        System.out.println("[로그] 입력된 키워드"+productDTO.getpName());
-//        productDTO.setCategory("");	//2
-//        System.out.println("[로그] 입력된 카테고리"+productDTO.getCategory());
-//        productDTO.setSellingPrice(0);//3
-//        ArrayList<ProductDTO> productList = productDAO.selectAll(productDTO);
-//        System.out.println("[로그_테스트] selectAll 성공");
-//        
-//        int cnt = 1;
-//        if (productList != null) {
-//        	System.out.println("[로그_테스트] != null");
-//            for (ProductDTO product : productList) {
-//            	System.out.println("상품목록: "+cnt);
-//            	System.out.println("상품번호: "+product.getPID());
-//                System.out.println("상품명: " + product.getpName());
-//                System.out.println("가격: " + product.getSellingPrice());
-//                System.out.println("재고: " + product.getpQty());
-//                System.out.println("판매량: " + product.getAncTotalQty());
-//                System.out.println("_______________________________");
-//                cnt++;
-//            }
-//        } else {
-//            System.out.println("상품 리스트가 없거나 오류가 발생했습니다.");
-//        }
+        productDTO.setSearchCondition("상품출력필터");    
+		productDTO.setAncSelectMin(1);
+		productDTO.setAncSelectMax(10);
+        productDTO.setpName(null);	//1
+        System.out.println("[로그] 입력된 키워드"+productDTO.getpName());
+        productDTO.setCategory("활력");	//2
+        System.out.println("[로그] 입력된 카테고리"+productDTO.getCategory());
+        productDTO.setSellingPrice(0);//3
+        ArrayList<ProductDTO> productList = productDAO.selectAll(productDTO);
+        System.out.println("[로그_테스트] selectAll 성공");
+        
+        int cnt = 1;
+        if (productList != null) {
+        	System.out.println("[로그_테스트] != null");
+            for (ProductDTO product : productList) {
+            	System.out.println("상품목록: "+cnt);
+            	System.out.println("상품번호: "+product.getPID());
+                System.out.println("상품명: " + product.getpName());
+                System.out.println("가격: " + product.getSellingPrice());
+                System.out.println("재고: " + product.getpQty());
+                System.out.println("판매량: " + product.getAncTotalQty());
+                System.out.println("_______________________________");
+                cnt++;
+            }
+        } else {
+            System.out.println("상품 리스트가 없거나 오류가 발생했습니다.");
+        }
 
 		// 상품상세
 //		productDTO.setSearchCondition("상품상세정보");
