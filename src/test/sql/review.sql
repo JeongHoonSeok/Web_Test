@@ -25,10 +25,17 @@ VALUES (
     NVL((SELECT MAX(R_ID) FROM REVIEW), 0) + 1,
     'YUMI', 
     3, 
-    5, 
+    3, 
     '값 싸고 맛있는 영양제3', 
     CURRENT_TIMESTAMP
 );
+
+-- 별점 평균
+SELECT AVG(R.SCORE) AS AVG_SCORE
+FROM REVIEW R
+INNER JOIN BUYINFO B ON R.B_ID = B.B_ID
+WHERE B.P_ID = 1;
+
 
 
 SELECT * FROM REVIEW;
