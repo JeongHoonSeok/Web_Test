@@ -15,22 +15,22 @@ public class MemberTest {
 		MemberDAO memberDAO = new MemberDAO();
 		
 		// 회원정보
-		memberDTO.setSearchCondition("회원정보");
-		memberDTO.setMID("teemo");
-		memberDTO = memberDAO.selectOne(memberDTO);
-		
-		if(memberDTO != null) {
-			System.out.println("회원이름 : "+memberDTO.getmName());
-			System.out.println("생년월일 : "+memberDTO.getDob());
-			System.out.println("전화번호 : "+memberDTO.getPhoneNumber());
-			System.out.println("메일주소 : "+memberDTO.getEmail());
-			System.out.println("우편번호 : "+memberDTO.getmPostCode());
-			System.out.println("일반주소 : "+memberDTO.getmAddress());
-			System.out.println("상세주소 : "+memberDTO.getmDetailedAddress());
-			System.out.println("건강상태 : "+memberDTO.getHealth());
-		} else {
-			System.out.println("없는 회원 또는 오류가 발생하였습니다");
-		}
+//		memberDTO.setSearchCondition("회원정보");
+//		memberDTO.setMID("teemo");
+//		memberDTO = memberDAO.selectOne(memberDTO);
+//		
+//		if(memberDTO != null) {
+//			System.out.println("회원이름 : "+memberDTO.getmName());
+//			System.out.println("생년월일 : "+memberDTO.getDob());
+//			System.out.println("전화번호 : "+memberDTO.getPhoneNumber());
+//			System.out.println("메일주소 : "+memberDTO.getEmail());
+//			System.out.println("우편번호 : "+memberDTO.getmPostCode());
+//			System.out.println("일반주소 : "+memberDTO.getmAddress());
+//			System.out.println("상세주소 : "+memberDTO.getmDetailedAddress());
+//			System.out.println("건강상태 : "+memberDTO.getHealth());
+//		} else {
+//			System.out.println("없는 회원 또는 오류가 발생하였습니다");
+//		}
 		
 		
 		// 비밀번호 확인
@@ -39,10 +39,23 @@ public class MemberTest {
 //		memberDTO.setmPassword("1234");
 //		memberDTO = memberDAO.selectOne(memberDTO);
 //		if(memberDTO != null) {
-//			System.out.println("비빌번호 확인 성공 : "+memberDTO.getmPassword());
+//			System.out.println("회원ID : "+memberDTO.getMID());
+//			System.out.println("회원이름 : "+memberDTO.getmName());
 //		} else {
 //			System.out.println("실패");
 //		}
+		
+		
+		// 비밀번호변경
+		memberDTO.setSearchCondition("비밀번호변경");
+		memberDTO.setMID("teemo");
+		memberDTO.setmPassword("1234");
+		boolean result = memberDAO.update(memberDTO);
+		if(result == true) {
+			System.out.println("비밀번호 변경 성공");
+		} else {
+			System.out.println("비밀번호 변경 실패");
+		}
 		
 		
 		//회원 주문정보
@@ -95,7 +108,7 @@ public class MemberTest {
 
 		// 로그인
 //		memberDTO.setSearchCondition("로그인");
-//		memberDTO.setMid("teemo");
+//		memberDTO.setMID("teemo");
 //		memberDTO.setmPassword("1234");
 //		System.out.println(memberDAO.selectOne(memberDTO));
 		
