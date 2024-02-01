@@ -23,6 +23,7 @@ public class ProductDTO {
     private int ancSelectMin;
     private int ancSelectMax;
     private int ancTotalQty;
+    private String ancRegTime;
     
 	public int getPID() {
 		return PID;
@@ -132,14 +133,22 @@ public class ProductDTO {
 	public void setAncTotalQty(int ancTotalQty) {
 		this.ancTotalQty = ancTotalQty;
 	}
+	
+	public String getAncRegTime() {
+		return ancRegTime;
+	}
+	public void setAncRegTime(String ancRegTime) {
+		this.ancRegTime = ancRegTime;
+	}
 	@Override
 	public String toString() {
 		return "ProductDTO [PID=" + PID + ", pName=" + pName + ", pDetail=" + pDetail + ", costPrice=" + costPrice
 				+ ", regularPrice=" + regularPrice + ", sellingPrice=" + sellingPrice + ", pQty=" + pQty
 				+ ", ingredient=" + ingredient + ", usage=" + usage + ", exp=" + exp + ", category=" + category
-				+ ", regTime=" + regTime + ", sellingState=" + sellingState + ", searchCondition=" + searchCondition
-				+ ", imagePath=" + imagePath + ", ancSelectMin=" + ancSelectMin + ", ancSelectMax=" + ancSelectMax
-				+ ", ancTotalQty=" + ancTotalQty + "]";
+				+ ", regTime=" + regTime + ", sellingState=" + sellingState + ", imagePath=" + imagePath
+				+ ", searchCondition=" + searchCondition + ", ancSelectMin=" + ancSelectMin + ", ancSelectMax="
+				+ ancSelectMax + ", ancTotalQty=" + ancTotalQty + ", ancRegTime=" + ancRegTime + "]";
 	}
+
 
 }

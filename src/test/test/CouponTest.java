@@ -38,15 +38,15 @@ public class CouponTest {
 		System.out.println("[테스트_쿠폰목록]");
 		ArrayList<CouponDTO> coupons = new ArrayList<>();
 		// 둘중 하나 주석 처리후 사용
-		couponDTO.setSearchCondition("사용가능쿠폰");
-//		couponDTO.setSearchCondition("쿠폰목록");
+//		couponDTO.setSearchCondition("사용가능쿠폰");
+		couponDTO.setSearchCondition("쿠폰목록");
 		couponDTO.setMID("teemo");
 		coupons = couponDAO.selectAll(couponDTO);
 		if (coupons != null) {
 			for (CouponDTO coupon : coupons) {
 				System.out.println("쿠폰 번호: " + coupon.getCPID());
 				System.out.println("쿠폰 이름: " + coupon.getCpName());
-				System.out.println("사용 기간: " + coupon.getPeriod());
+				System.out.println("사용 기간: " + coupon.getAncPeriod());
 				System.out.println("할인율: " + coupon.getDiscount() + "%");
 				System.out.println("사용 여부: " + coupon.getUsed());
 				System.out.println("적용 가능한 카테고리: " + coupon.getCategory());

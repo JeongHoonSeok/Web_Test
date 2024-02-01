@@ -84,6 +84,7 @@ public class ProductTest {
                 System.out.println("가격: " + product.getSellingPrice());
                 System.out.println("재고: " + product.getpQty());
                 System.out.println("판매량: " + product.getAncTotalQty());
+                System.out.println("등록일: "+product.getAncRegTime());
                 System.out.println("_______________________________");
                 cnt++;
             }

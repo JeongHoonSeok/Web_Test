@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import test.JDBCUtil;
@@ -82,7 +83,8 @@ public class ProductDAO {
 
 	public ArrayList<ProductDTO> selectAll(ProductDTO pDTO) {
 
-		ArrayList<ProductDTO> productList = new ArrayList<ProductDTO>();
+		ArrayList<ProductDTO> productList = null;
+		ProductDTO productDTO = null;
 
 		conn = JDBCUtil.connect();
 
@@ -99,20 +101,28 @@ public class ProductDAO {
 					if (productList == null) {
 						productList = new ArrayList<ProductDTO>(); // productList가 null인 경우에만 객체 생성
 					}
-					ProductDTO productTempDTO = new ProductDTO();
-					productTempDTO.setPID(rs.getInt("P_ID"));
-					productTempDTO.setpName(rs.getString("P_NAME"));
-					productTempDTO.setCostPrice(rs.getInt("COST_PRICE"));
-					productTempDTO.setRegularPrice(rs.getInt("REGULAR_PRICE"));
-					productTempDTO.setSellingPrice(rs.getInt("SELLING_PRICE"));
-					productTempDTO.setpQty(rs.getInt("P_QTY"));
-					productTempDTO.setIngredient(rs.getString("INGREDIENT"));
-					productTempDTO.setCategory(rs.getString("CATEGORY"));
-					productTempDTO.setRegTime(rs.getTimestamp("REG_TIME"));
-					productTempDTO.setSellingState(rs.getString("SELLING_STATE"));
-					productTempDTO.setImagePath(rs.getString("IMAGE_PATH"));
-					productTempDTO.setpDetail(rs.getString("P_DETAIL"));
-					productList.add(productTempDTO);
+					productDTO = new ProductDTO();
+					
+					productDTO.setRegTime(rs.getTimestamp("REG_TIME"));
+
+					SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+					String regTime = timeFormat.format(productDTO.getRegTime());
+					
+					productDTO.setPID(rs.getInt("P_ID"));
+					productDTO.setpName(rs.getString("P_NAME"));
+					productDTO.setCostPrice(rs.getInt("COST_PRICE"));
+					productDTO.setRegularPrice(rs.getInt("REGULAR_PRICE"));
+					productDTO.setSellingPrice(rs.getInt("SELLING_PRICE"));
+					productDTO.setpQty(rs.getInt("P_QTY"));
+					productDTO.setIngredient(rs.getString("INGREDIENT"));
+					productDTO.setCategory(rs.getString("CATEGORY"));
+					productDTO.setRegTime(rs.getTimestamp("REG_TIME"));
+					productDTO.setAncRegTime(regTime);
+					productDTO.setSellingState(rs.getString("SELLING_STATE"));
+					productDTO.setImagePath(rs.getString("IMAGE_PATH"));
+					productDTO.setpDetail(rs.getString("P_DETAIL"));
+					productList.add(productDTO);
 				}
 
 				rs.close();
@@ -175,22 +185,30 @@ public class ProductDAO {
 					if (productList == null) {
 						productList = new ArrayList<ProductDTO>();
 					}
-					// System.out.println("[로그] " + rs.getInt("P_ID"));
-					ProductDTO productTempDTO = new ProductDTO();
-					productTempDTO.setPID(rs.getInt("P_ID"));
-					productTempDTO.setpName(rs.getString("P_NAME"));
-					productTempDTO.setCostPrice(rs.getInt("COST_PRICE"));
-					productTempDTO.setRegularPrice(rs.getInt("REGULAR_PRICE"));
-					productTempDTO.setSellingPrice(rs.getInt("SELLING_PRICE"));
-					productTempDTO.setpQty(rs.getInt("P_QTY"));
-					productTempDTO.setIngredient(rs.getString("INGREDIENT"));
-					productTempDTO.setCategory(rs.getString("CATEGORY"));
-					productTempDTO.setRegTime(rs.getTimestamp("REG_TIME"));
-					productTempDTO.setSellingState(rs.getString("SELLING_STATE"));
-					productTempDTO.setImagePath(rs.getString("IMAGE_PATH"));
-					productTempDTO.setpDetail(rs.getString("P_DETAIL"));
-					productTempDTO.setAncTotalQty(rs.getInt("TOTAL_B_QTY"));
-					productList.add(productTempDTO);
+
+					productDTO = new ProductDTO();
+					
+					productDTO.setRegTime(rs.getTimestamp("REG_TIME"));
+
+					SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+					String regTime = timeFormat.format(productDTO.getRegTime());
+					
+					productDTO.setPID(rs.getInt("P_ID"));
+					productDTO.setpName(rs.getString("P_NAME"));
+					productDTO.setCostPrice(rs.getInt("COST_PRICE"));
+					productDTO.setRegularPrice(rs.getInt("REGULAR_PRICE"));
+					productDTO.setSellingPrice(rs.getInt("SELLING_PRICE"));
+					productDTO.setpQty(rs.getInt("P_QTY"));
+					productDTO.setIngredient(rs.getString("INGREDIENT"));
+					productDTO.setCategory(rs.getString("CATEGORY"));
+					productDTO.setRegTime(rs.getTimestamp("REG_TIME"));
+					productDTO.setAncRegTime(regTime);
+					productDTO.setSellingState(rs.getString("SELLING_STATE"));
+					productDTO.setImagePath(rs.getString("IMAGE_PATH"));
+					productDTO.setpDetail(rs.getString("P_DETAIL"));
+					productDTO.setAncTotalQty(rs.getInt("TOTAL_B_QTY"));
+					productList.add(productDTO);
 				}
 				rs.close();
 
@@ -229,6 +247,13 @@ public class ProductDAO {
 				ResultSet rs = pstmt.executeQuery();
 
 				if (rs.next()) {
+					
+					productDTO.setRegTime(rs.getTimestamp("REG_TIME"));
+
+					SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+					String regTime = timeFormat.format(productDTO.getRegTime());
+					
 					productDTO.setPID(rs.getInt("P_ID"));
 					productDTO.setpName(rs.getString("P_NAME"));
 					productDTO.setpDetail(rs.getString("P_DETAIL"));
@@ -239,6 +264,7 @@ public class ProductDAO {
 					productDTO.setIngredient(rs.getString("INGREDIENT"));
 					productDTO.setCategory(rs.getString("CATEGORY"));
 					productDTO.setRegTime(rs.getTimestamp("REG_TIME"));
+					productDTO.setAncRegTime(regTime);
 					productDTO.setSellingState(rs.getString("SELLING_STATE"));
 					productDTO.setImagePath(rs.getString("IMAGE_PATH"));
 					productDTO.setUsage(rs.getString("USAGE"));

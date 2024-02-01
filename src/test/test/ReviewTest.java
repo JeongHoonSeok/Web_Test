@@ -14,14 +14,14 @@ public class ReviewTest {
 		ArrayList<ReviewDTO> Reviews = new ArrayList<>();		
 
 		//리뷰 삭제
-        reviewDTO.setSearchCondition("리뷰삭제");
-        reviewDTO.setRID(1);
-		boolean result = reviewDAO.delete(reviewDTO);
-        if (result) {
-            System.out.println("리뷰가 성공적으로 삭제되었습니다.");
-        } else {
-            System.out.println("리뷰 삭제에 실패하였습니다.");
-        }
+//        reviewDTO.setSearchCondition("리뷰삭제");
+//        reviewDTO.setRID(1);
+//		boolean result = reviewDAO.delete(reviewDTO);
+//        if (result) {
+//            System.out.println("리뷰가 성공적으로 삭제되었습니다.");
+//        } else {
+//            System.out.println("리뷰 삭제에 실패하였습니다.");
+//        }
 		
 		//리뷰작성
 //		reviewDTO.setSearchCondition("리뷰작성");
@@ -61,25 +61,25 @@ public class ReviewTest {
 		
 		
 		// 리뷰조회
-//		reviewDTO.setSearchCondition("내리뷰");
-//		reviewDTO.setMID("YUMI");
-//		reviewDTO.setSearchCondition("상품리뷰");
-//		reviewDTO.setAncPID(1);
-//		Reviews = reviewDAO.selectAll(reviewDTO);
-//		if (Reviews != null) {
-//			for (ReviewDTO review : Reviews) {
-//				System.out.println("리뷰 ID: " + review.getRID());
-//				System.out.println("작성자: " + review.getMID());
-//				System.out.println("구매번호: " + review.getBID());
-//				System.out.println("별점: " + review.getScore());
-//				System.out.println("리뷰 내용: " + review.getContents());
-//				System.out.println("작성일: " + review.getCreateTime());
-//				System.out.println("상품 ID: " + review.getAncPID());
-//				System.out.println("상품 이름 :"+review.getAncPName());
-//				System.out.println("---------------------------");
-//			}
-//		} else {
-//			System.out.println("리뷰가 없습니다.");
-//		}				
+		reviewDTO.setSearchCondition("내리뷰");
+		reviewDTO.setMID("YUMI");
+		reviewDTO.setSearchCondition("상품리뷰");
+		reviewDTO.setAncPID(1);
+		Reviews = reviewDAO.selectAll(reviewDTO);
+		if (Reviews != null) {
+			for (ReviewDTO review : Reviews) {
+				System.out.println("리뷰 ID: " + review.getRID());
+				System.out.println("작성자: " + review.getMID());
+				System.out.println("구매번호: " + review.getBID());
+				System.out.println("별점: " + review.getScore());
+				System.out.println("리뷰 내용: " + review.getContents());
+				System.out.println("작성일: " + review.getAncCreateTime());
+				System.out.println("상품 ID: " + review.getAncPID());
+				System.out.println("상품 이름 :"+review.getAncPName());
+				System.out.println("---------------------------");
+			}
+		} else {
+			System.out.println("리뷰가 없습니다.");
+		}				
 	}
 }
