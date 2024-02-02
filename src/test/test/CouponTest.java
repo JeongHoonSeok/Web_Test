@@ -29,7 +29,7 @@ public class CouponTest {
 //		couponDTO.setCPID("1");
 //		boolean result = couponDAO.update(couponDTO);		
 //		if(result==true) {
-//			System.out.println("사용성공");
+//			System.out.println("사용성공"); 
 //		} else {
 //			System.out.println("사용실패");
 //		}
