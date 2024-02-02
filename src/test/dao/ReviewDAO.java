@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import test.JDBCUtil;
-import test.dto.ProductDTO;
 import test.dto.ReviewDTO;
 
 public class ReviewDAO {
