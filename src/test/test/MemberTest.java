@@ -47,15 +47,15 @@ public class MemberTest {
 		
 		
 		// 비밀번호변경
-		memberDTO.setSearchCondition("비밀번호변경");
-		memberDTO.setMID("teemo");
-		memberDTO.setmPassword("1234");
-		boolean result = memberDAO.update(memberDTO);
-		if(result == true) {
-			System.out.println("비밀번호 변경 성공");
-		} else {
-			System.out.println("비밀번호 변경 실패");
-		}
+//		memberDTO.setSearchCondition("비밀번호변경");
+//		memberDTO.setMID("teemo");
+//		memberDTO.setmPassword("1234");
+//		boolean result = memberDAO.update(memberDTO);
+//		if(result == true) {
+//			System.out.println("비밀번호 변경 성공");
+//		} else {
+//			System.out.println("비밀번호 변경 실패");
+//		}
 		
 		
 		//회원 주문정보
@@ -107,10 +107,10 @@ public class MemberTest {
 //		System.out.println(flag);
 
 		// 로그인
-//		memberDTO.setSearchCondition("로그인");
-//		memberDTO.setMID("teemo");
-//		memberDTO.setmPassword("1234");
-//		System.out.println(memberDAO.selectOne(memberDTO));
+		memberDTO.setSearchCondition("로그인");
+		memberDTO.setMID("teemo");
+		memberDTO.setmPassword("1234");
+		System.out.println(memberDAO.selectOne(memberDTO));
 		
 		//회원정보
 //		memberDTO.setSearchCondition("회원정보");
