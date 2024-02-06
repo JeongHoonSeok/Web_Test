@@ -91,8 +91,8 @@ public class MemberTest {
             e.printStackTrace();
         }		
         memberDTO.setSearchCondition("회원가입");
-		memberDTO.setMID("Ari");
-		memberDTO.setmName("아리");
+		memberDTO.setMID("YUMI");
+		memberDTO.setmName("유미");
 		memberDTO.setmPassword("1234");
 		memberDTO.setDob(dob);
 		memberDTO.setGender("여");
