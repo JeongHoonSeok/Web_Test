@@ -208,6 +208,8 @@ public class MemberDAO {
 					memberDTO.setmAddress(rs.getString("M_ADDRESS"));
 					memberDTO.setmDetailedAddress(rs.getString("M_DETAILED_ADDRESS"));
 					memberDTO.setHealth(rs.getString("HEALTH"));
+					memberDTO.setLoginType(rs.getString("LOGIN_TYPE"));
+					memberDTO.setKakaoId(rs.getString("KAKAO_ID"));
 				} else {
 					memberDTO = null;
 				}

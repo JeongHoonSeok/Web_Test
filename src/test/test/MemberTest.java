@@ -82,35 +82,37 @@ public class MemberTest {
 //		System.out.println(memberDAO.selectOne(memberDTO).toString());
 
 		// 회원가입
-//		Date dob = null;
-//        try {
-//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//            java.util.Date utilDate = sdf.parse("2018-06-01");
-//            dob = new java.sql.Date(utilDate.getTime());
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }		
-//		memberDTO.setMid("Ari");
-//		memberDTO.setmName("아리");
-//		memberDTO.setmPassword("1234");
-//		memberDTO.setDob(dob);
-//		memberDTO.setGender("여");
-//		memberDTO.setPhoneNumber("010-2525-2525");
-//		memberDTO.setEmail("Ari@gmail.com");
-//		memberDTO.setPostCode(99999);
-//		memberDTO.setAddress("관악구 신림동");
-//		memberDTO.setDetailedAddress("군숙소");
-//		memberDTO.setGrade("USER");
-//		memberDTO.setHealth("눈");
-//		memberDTO.setSearchCondition("회원가입");
-//		boolean flag = memberDAO.insert(memberDTO);
-//		System.out.println(flag);
+		Date dob = null;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date utilDate = sdf.parse("2018-06-01");
+            dob = new java.sql.Date(utilDate.getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }		
+        memberDTO.setSearchCondition("회원가입");
+		memberDTO.setMID("Ari");
+		memberDTO.setmName("아리");
+		memberDTO.setmPassword("1234");
+		memberDTO.setDob(dob);
+		memberDTO.setGender("여");
+		memberDTO.setPhoneNumber("010-2525-2525");
+		memberDTO.setEmail("Ari@gmail.com");
+		memberDTO.setmPostCode(99999);
+		memberDTO.setmAddress("관악구 신림동");
+		memberDTO.setmDetailedAddress("군숙소");
+		memberDTO.setGrade("USER");
+		memberDTO.setHealth("눈");
+		memberDTO.setLoginType(null);
+		memberDTO.setKakaoId(null);
+		boolean flag = memberDAO.insert(memberDTO);
+		System.out.println(flag);
 
 		// 로그인
-		memberDTO.setSearchCondition("로그인");
-		memberDTO.setMID("teemo");
-		memberDTO.setmPassword("1234");
-		System.out.println(memberDAO.selectOne(memberDTO));
+//		memberDTO.setSearchCondition("로그인");
+//		memberDTO.setMID("teemo");
+//		memberDTO.setmPassword("1234");
+//		System.out.println(memberDAO.selectOne(memberDTO));
 		
 		//회원정보
 //		memberDTO.setSearchCondition("회원정보");
