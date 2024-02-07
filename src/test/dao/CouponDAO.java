@@ -40,15 +40,17 @@ public class CouponDAO {
 			+ "ORDER BY PERIOD ASC";
 
 	private static final String SELECTONE = "";
-
+	
 	// --현재시간 +30일----SYSTIMESTAMP + INTERVAL '30' DAY--
+	// --현재시간 +1시간----SYSTIMESTAMP + INTERVAL '1' HOUR--
+	// --현재시간 +5분----SYSTIMESTAMP + INTERVAL '5' MINUTE--
 	// --현재시간 +30초----SYSTIMESTAMP + INTERVAL '30' SECOND--
 	private static final String INSERT = "INSERT INTO COUPON (CP_ID, M_ID, CP_NAME, PERIOD, DISCOUNT, CATEGORY) "
 			+ "	VALUES ("
 			+ "?, "
 			+ "?, "
 			+ "?, "
-			+ "SYSTIMESTAMP + INTERVAL '30' SECOND, "
+			+ "SYSTIMESTAMP + INTERVAL '30' DAY, "
 			+ "?, "
 			+ "?)";
 

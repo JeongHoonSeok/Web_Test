@@ -16,7 +16,7 @@ public class MemberTest {
 		
 		// 회원정보
 //		memberDTO.setSearchCondition("회원정보");
-//		memberDTO.setMID("teemo");
+//		memberDTO.setMID("   ");
 //		memberDTO = memberDAO.selectOne(memberDTO);
 //		
 //		if(memberDTO != null) {
@@ -82,31 +82,31 @@ public class MemberTest {
 //		System.out.println(memberDAO.selectOne(memberDTO).toString());
 
 		// 회원가입
-		Date dob = null;
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            java.util.Date utilDate = sdf.parse("2018-06-01");
-            dob = new java.sql.Date(utilDate.getTime());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }		
-        memberDTO.setSearchCondition("회원가입");
-		memberDTO.setMID("YUMI");
-		memberDTO.setmName("유미");
-		memberDTO.setmPassword("1234");
-		memberDTO.setDob(dob);
-		memberDTO.setGender("여");
-		memberDTO.setPhoneNumber("010-2525-2525");
-		memberDTO.setEmail("Ari@gmail.com");
-		memberDTO.setmPostCode(99999);
-		memberDTO.setmAddress("관악구 신림동");
-		memberDTO.setmDetailedAddress("군숙소");
-		memberDTO.setGrade("USER");
-		memberDTO.setHealth("눈");
-		memberDTO.setLoginType(null);
-		memberDTO.setKakaoId(null);
-		boolean flag = memberDAO.insert(memberDTO);
-		System.out.println(flag);
+//		Date dob = null;
+//        try {
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//            java.util.Date utilDate = sdf.parse("2018-06-01");
+//            dob = new java.sql.Date(utilDate.getTime());
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }		
+//        memberDTO.setSearchCondition("회원가입");
+//		memberDTO.setMID("YUMI");
+//		memberDTO.setmName("유미");
+//		memberDTO.setmPassword("1234");
+//		memberDTO.setDob(dob);
+//		memberDTO.setGender("여");
+//		memberDTO.setPhoneNumber("010-2525-2525");
+//		memberDTO.setEmail("Ari@gmail.com");
+//		memberDTO.setmPostCode(99999);
+//		memberDTO.setmAddress("관악구 신림동");
+//		memberDTO.setmDetailedAddress("군숙소");
+//		memberDTO.setGrade("USER");
+//		memberDTO.setHealth("눈");
+//		memberDTO.setLoginType(null);
+//		memberDTO.setKakaoId(null);
+//		boolean flag = memberDAO.insert(memberDTO);
+//		System.out.println(flag);
 
 		// 로그인
 //		memberDTO.setSearchCondition("로그인");
@@ -121,31 +121,29 @@ public class MemberTest {
 //		System.out.println(memberDAO.selectOne(memberDTO));
 
 		// 회원정보 변경
-//		Date dob = null;
-//		try {
-//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//			java.util.Date utilDate = sdf.parse("2018-06-01");
-//			dob = new java.sql.Date(utilDate.getTime());
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
-//
-//		memberDTO.setSearchCondition("회원정보변경");
-//		memberDTO.setmName("티모");
-//		memberDTO.setDob(dob);
-//		memberDTO.setGender("남");
-//		memberDTO.setPhoneNumber("010-2525-2525");
-//		memberDTO.setEmail("teemo@gamil.com");
-//		memberDTO.setmPostCode(9999);
-//		memberDTO.setmAddress("호암로24길 16 동남빌딩");
-//		memberDTO.setmDetailedAddress("5022호");
-//		memberDTO.setMid("teemo");
-//		boolean flag = memberDAO.update(memberDTO);
-//		if (flag == true) {
-//			System.out.println("회원정보 변경완료");
-//		} else {
-//			System.out.println("회원정보 변경실패");
-//		}
+		Date dob = null;
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			java.util.Date utilDate = sdf.parse("2018-06-01");
+			dob = new java.sql.Date(utilDate.getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		memberDTO.setSearchCondition("회원정보변경");
+		memberDTO.setMID("teemo");
+		memberDTO.setmName("티몽");
+		memberDTO.setPhoneNumber("010-2525-2525");
+		memberDTO.setEmail("teemo@gamil.com");
+		memberDTO.setmPostCode(9999);
+		memberDTO.setmAddress("호암로24길 16 동남빌딩");
+		memberDTO.setmDetailedAddress("5022호");
+		boolean flag = memberDAO.update(memberDTO);
+		if (flag == true) {
+			System.out.println("회원정보 변경완료");
+		} else {
+			System.out.println("회원정보 변경실패");
+		}
 		
 		
 		
