@@ -25,8 +25,11 @@ public class BuyInfoDAO {
 	// SearchCondition = 구매내역
 	private static final String SELECTALL_BUY_INFO_LIST = "SELECT "
 			+ "B.B_ID, B.M_ID, B.P_ID, B.CP_ID, B.ORDER_NUM, B.DELI_STATE, B.B_QTY, B.PAYMENT_PRICE, B.BUY_TIME, B.B_POSTCODE, B.B_ADDRESS, B.B_DETAILED_ADDRESS, HAS_REVIEW, "
-			+ "P.P_NAME, P.IMAGE_PATH " + "FROM BUYINFO B " + "JOIN PRODUCT P ON B.P_ID = P.P_ID "
-			+ "WHERE B.M_ID = ? AND B.DELI_STATE NOT IN ('취소', '환불') " + "ORDER BY B.ORDER_NUM DESC";
+			+ "P.P_NAME, P.IMAGE_PATH "
+			+ "FROM BUYINFO B "
+			+ "JOIN PRODUCT P ON B.P_ID = P.P_ID "
+			+ "WHERE B.M_ID = ? "
+			+ "ORDER BY B.ORDER_NUM DESC";
 
 	// 판매량 반환
 	// 전달받은 값과 P_ID가 일치하는 행의 B_Qty를 더한다
@@ -49,7 +52,7 @@ public class BuyInfoDAO {
 	// 구매상태변경(환불, 취소)
 	// 컨트롤러에서 환불, 취소를 받아 업데이트
 	// 중프에서 사용 안하는 기능
-	// private static final String UPDATE_BUY_INFO_STATE = "UPDATE BUYINFO SET DELI_STATE = ? WHERE B_ID = ?";
+	private static final String UPDATE_BUY_INFO_STATE = "UPDATE BUYINFO SET DELI_STATE = ? WHERE B_ID = ?";
 
 	// 리뷰 작성여부
 	// 트리거(INSERT_RIVIEW_TRIGGER)를 사용해 리뷰테이블에서 INSERT가 일어나면 실행
@@ -57,7 +60,7 @@ public class BuyInfoDAO {
 	// HAS_REVIEW = 1 WHERE B_ID = ?";
 
 	// 구매내역 삭제 없음
-	//private static final String DELETE_BUY_INFO_ = "";
+	private static final String DELETE_BUY_INFO = "";
 
 	public ArrayList<BuyInfoDTO> selectAll(BuyInfoDTO bDTO) {
 
@@ -242,7 +245,8 @@ public class BuyInfoDAO {
 
 	public boolean insert(BuyInfoDTO bDTO) {
 
-		// try에 오류 발생 예상코드만 작성하기 위한 scope 오류
+		// executeUpdate는 쿼리문 실행결과 영향을 받은 행의 수를 반환하기 때문에
+		// 쿼리문 성공 여부를 저장하기 위한 변수
 		int result = 0;
 
 		// DB에 연결
